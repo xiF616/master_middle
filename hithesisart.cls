@@ -275,7 +275,8 @@
   \csname #1\endcsname{}
 }
 
-\hit@def@term{ctitlecover}
+\hit@def@term{ctitleone}
+\hit@def@term{ctitletwo}
 \hit@def@term{csubject}
 \hit@def@term{cauthor}
 \hit@def@term{cstudentid}
@@ -316,7 +317,7 @@
   \parbox[t][3cm][t]{\textwidth}{
     \begin{center}
       % \songti\xiaoer\textbf{题\hspace{\ccwd}目：\hit@ctitlecover}
-      \zihao{-2}\songti\textbf{题\hspace{9pt}目：\hit@ctitlecover}
+      \zihao{-2}\songti\textbf{题\hspace{9pt}目：\hit@ctitleone \\ \hit@ctitletwo}
     \end{center}
   }
   \vspace*{-2.4mm}
