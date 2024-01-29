@@ -1,0 +1,73 @@
+% !TeX program = xelatex
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%          ,
+%      /\^/`\
+%     | \/   |                CONGRATULATIONS!
+%     | |    |             SPRING IS IN THE AIR!
+%     \ \    /                                                _ _
+%      '\\//'                                               _{ ' }_
+%        ||                     hithesis v3                { `.!.` }
+%        ||                                                ',_/Y\_,'
+%        ||  ,                   dustincys                   {_,_}
+%    |\  ||  |\          Email: yanshuoc@gmail.com             |
+%    | | ||  | |            https://yanshuo.site             (\|  /)
+%    | | || / /                                               \| //
+%    \ \||/ /       https://github.com/dustincys/hithesis      |//
+%      `\\//`   \\   \./    \\ /     //    \\./   \\   //   \\ |/ /
+%     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\documentclass[fontset=windows,toc=true]{hithesisart}
+% 此处选项中不要有空格
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% fontset=windows|mac|ubuntu|fandol
+%   含义：前三个对应各自系统，fandol是开源字体。
+% toc=true|false
+%   含义：是否显示目录，默认true
+% newtxmath=true|false
+%    含义：是否使用 times 风格数学字体，默认true
+% print=true|false
+%   含义：是否在封面后增加一个空白页用于打印，默认false
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\graphicspath{{figures/}}
+
+\begin{document}
+\hitsetup{
+  %******************************
+  % 注意：
+  %   1. 配置里面不要出现空行
+  %   2. 不需要的配置信息可以删除
+  %******************************
+  ctitlecover={一类具一般增长的非齐次分数阶椭圆型方程\\的Harnack不等式},
+  cauthor={薛琦},
+  cstudentid={22S012003},
+  csupervisor={张超教授},
+  % 日期自动使用当前时间，若需指定按如下方式修改：
+  %cdate={盘古开天地}
+  % cenrolldate={公元2020年}
+}
+
+\makecover
+
+\section{课题主要研究内容及进度情况}
+\input{body/progress.tex}
+\subsection{yyy}
+\subsection{xxx}
+
+\section{目前已完成的研究工作及结果}
+\input{body/studied.tex}
+
+\section{后期拟完成的研究工作及进度安排}
+\input{body/to_study.tex}
+
+\section{存在的困难与问题}
+\input{body/difficulties_and_problems.tex}
+
+\section{如期完成全部论文工作的可能性}
+\input{body/probility.tex}
+\end{document}
+
+% Local Variables:
+% TeX-engine: xetex
+% End:
