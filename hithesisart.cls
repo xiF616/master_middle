@@ -81,7 +81,11 @@
 \RequirePackage{xeCJK}
 \setCJKfamilyfont{kaiti2312}{KaiTi_GB2312}
 % \setCJKfamilyfont{cusong}{宋体}[AutoFakeBold]
-\setCJKmainfont{SimSun}[AutoFakeBold,ItalicFont=KaiTi]
+\setCJKmainfont{SimSun}[
+  % BoldFont=FZCuSong-B09S,
+  AutoFakeBold=1.5,
+  ItalicFont=KaiTi,
+  ]
 
 \setmainfont{TeXGyreTermesX}[
   UprightFont = *-Regular ,
@@ -298,31 +302,42 @@
     }
   }
 }
-
+\newcommand{\schoolsep}{\hspace{4pt}}
+\newcommand{\reportsep}{\hspace{4.2pt}}
 \def\hitsetup{\kvsetkeys{hit}}
 \newcommand{\hit@report@titlepage@graduate}{
   \ifthenelse
   {\equal{\hit@fontset}{siyuan}}%
   {\xiaosi[1]\vspace*{0.65em}}%
   {\xiaosi[1]\textcolor[rgb]{1,1,1}{\songti{\hit@hi}}}%
-  \vspace*{12.5mm}
-  \begin{center}
-    \zihao{-2}\CJKfamily{kaiti2312}\textbf{哈\hspace{2pt}尔\hspace{2pt}滨\hspace{2pt}工\hspace{2pt}业\hspace{2pt}大\hspace{2pt}学}
-  \end{center}
-  \vspace{5mm}
-  \begin{center}
-    \zihao{2}\songti\textbf{硕\hspace{2pt}士\hspace{2pt}学\hspace{2pt}位\hspace{2pt}论\hspace{2pt}文\hspace{2pt}中\hspace{2pt}期\hspace{2pt}报\hspace{2pt}告}
-  \end{center}
-  \vspace{3mm}
+
+  \vspace*{4.2em}
+  % \hspace*{\fill} \hspace*{\fill}
+
+  % \hspace*{11.1em}
+  \hspace*{4.6cm}
+  % \begin{center}
+  \zihao{-2}{\CJKfamily{kaiti2312}\textbf{哈{\schoolsep}尔{\schoolsep}滨{\schoolsep}工{\schoolsep}业{\schoolsep}大{\schoolsep}学}}
+    % \zihao{-2}\CJKfamily{kaiti2312}\textbf{哈\hfill 尔\hfill 滨\hfill 工\hfill 业\hfill 大\hfill 学}
+  % \end{center}
+  % \hspace*{11em}
+
+  \vspace{2.1em}
+  \hspace*{4.1em}
+  % \begin{center}
+  \zihao{2}\textbf{硕{\reportsep}士{\reportsep}学{\reportsep}位{\reportsep}论{\reportsep}文{\reportsep}中{\reportsep}期{\reportsep}报{\reportsep}告}
+  % \end{center}
+
+  \vspace{2.1mm}
   \parbox[t][3cm][t]{\textwidth}{
     \begin{center}
       % \songti\xiaoer\textbf{题\hspace{\ccwd}目：\hit@ctitlecover}
-      \zihao{-2}\songti\textbf{题\hspace{9pt}目：\hit@ctitleone \\ \hit@ctitletwo}
+      \zihao{-2}\textbf{题\hspace{9pt}目：\hit@ctitleone \\ \hit@ctitletwo}
     \end{center}
   }
-  \vspace*{-2.4mm}
+  \vspace*{-2.6mm}
   % \parbox[b][3cm][t]{\textwidth}{
-    \begin{center}\zihao{3}\songti
+    \begin{center}\zihao{3}
       \renewcommand{\arraystretch}{1.9}
       \begin{tabular}{l@{}c}
         \textbf{\makebox[6\ccwd][s]{院（系}）} & \underline{\makebox[7cm]{\textbf{数学学院}}}\\
@@ -338,10 +353,10 @@
   % }
   \vfill
   \begin{center}
-    \zihao{3}\songti\textbf{研究生院制}
+    \zihao{3}\textbf{研究生院制}
   \end{center}
   % \hspace*{\fill}
-  \vspace*{6.5mm}
+  \vspace*{4.65mm}
 }
 
 \RequirePackage{setspace}
