@@ -96,23 +96,23 @@
 %   BoldItalicFont = *-BoldItalic ,
 %   Extension = .otf ,
 %   ]
-\setmainfont{Times New Roman}[
+\setmainfont{Times New Roman}[ % 衬线字体
   AutoFakeBold=1.5,
   ]
-\setsansfont{texgyreheros}[
-  UprightFont = *-regular ,
-  BoldFont = *-bold ,
-  ItalicFont = *-italic ,
-  BoldItalicFont = *-bolditalic ,
-  Extension = .otf ,
-  ]
-\setmonofont{texgyrecursor}[
-  UprightFont = *-regular ,
-  BoldFont = *-bold ,
-  ItalicFont = *-italic ,
-  BoldItalicFont = *-bolditalic ,
-  Extension = .otf ,
-]
+% \setsansfont{texgyreheros}[ % 无衬线字体
+%   UprightFont = *-regular ,
+%   BoldFont = *-bold ,
+%   ItalicFont = *-italic ,
+%   BoldItalicFont = *-bolditalic ,
+%   Extension = .otf ,
+%   ]
+% \setmonofont{texgyrecursor}[ % 等宽字体，一般是打印机字体
+%   UprightFont = *-regular ,
+%   BoldFont = *-bold ,
+%   ItalicFont = *-italic ,
+%   BoldItalicFont = *-bolditalic ,
+%   Extension = .otf ,
+% ]
 \ifhit@newtxmath
   \let\oldencodingdefault\encodingdefault
   \let\oldrmdefault\rmdefault
