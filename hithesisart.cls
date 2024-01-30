@@ -78,6 +78,7 @@
 \RequirePackage{amsmath}
 \RequirePackage[amsmath,thmmarks,hyperref]{ntheorem}
 \RequirePackage{amssymb}
+
 \RequirePackage{xeCJK}
 \setCJKfamilyfont{kaiti2312}{KaiTi_GB2312}
 % \setCJKfamilyfont{cusong}{宋体}[AutoFakeBold]
@@ -87,13 +88,16 @@
   ItalicFont=KaiTi,
   ]
 
-\setmainfont{TeXGyreTermesX}[
-  UprightFont = *-Regular ,
-  BoldFont = *-Bold ,
-  % BoldFont = \CJKfamily{cusong},
-  ItalicFont = *-Italic ,
-  BoldItalicFont = *-BoldItalic ,
-  Extension = .otf ,
+% \setmainfont{TeXGyreTermesX}[
+%   UprightFont = *-Regular ,
+%   BoldFont = *-Bold ,
+%   % BoldFont = \CJKfamily{cusong},
+%   ItalicFont = *-Italic ,
+%   BoldItalicFont = *-BoldItalic ,
+%   Extension = .otf ,
+%   ]
+\setmainfont{Times New Roman}[
+  AutoFakeBold=1.5,
   ]
 \setsansfont{texgyreheros}[
   UprightFont = *-regular ,

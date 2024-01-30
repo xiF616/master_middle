@@ -284,5 +284,4 @@ TSWLatexianTemp*
 #*Notes.bib
 
 ~*.doc
-~*.docx
 ~*.tmp
