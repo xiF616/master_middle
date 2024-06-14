@@ -24,7 +24,9 @@
 %% 
 \NeedsTeXFormat{LaTeX2e}[1999/12/01]
 \ProvidesClass{hithesisart}
-[0000/00/00 v3.1d Harbin Institute of Technology Thesis Template]
+[2023/04/16 v3.1c Harbin Institute of Technology Thesis Template]
+
+\PassOptionsToPackage{quiet}{xeCJK}
 
 %% 处理文档类选项
 \RequirePackage{kvoptions}
@@ -32,14 +34,6 @@
   family=hit,
   prefix=hit@,
   setkeys=\kvsetkeys
-}
-
-\newif\ifhit@opening
-\newif\ifhit@midterm
-\define@key{hit}{stage}{%
-  \hit@openingfalse
-  \hit@midtermfalse
-  \expandafter\csname hit@#1true\endcsname
 }
 
 \DeclareBoolOption[true]{raggedbottom}
@@ -92,11 +86,33 @@
   % BoldFont=FZCuSong-B09S,
   AutoFakeBold=1.5,
   ItalicFont=KaiTi,
-]
+  ]
+
+% \setmainfont{TeXGyreTermesX}[
+%   UprightFont = *-Regular ,
+%   BoldFont = *-Bold ,
+%   % BoldFont = \CJKfamily{cusong},
+%   ItalicFont = *-Italic ,
+%   BoldItalicFont = *-BoldItalic ,
+%   Extension = .otf ,
+%   ]
 \setmainfont{Times New Roman}[ % 衬线字体
   AutoFakeBold=1.5,
-]
-
+  ]
+% \setsansfont{texgyreheros}[ % 无衬线字体
+%   UprightFont = *-regular ,
+%   BoldFont = *-bold ,
+%   ItalicFont = *-italic ,
+%   BoldItalicFont = *-bolditalic ,
+%   Extension = .otf ,
+%   ]
+% \setmonofont{texgyrecursor}[ % 等宽字体，一般是打印机字体
+%   UprightFont = *-regular ,
+%   BoldFont = *-bold ,
+%   ItalicFont = *-italic ,
+%   BoldItalicFont = *-bolditalic ,
+%   Extension = .otf ,
+% ]
 \ifhit@newtxmath
   \let\oldencodingdefault\encodingdefault
   \let\oldrmdefault\rmdefault
@@ -162,7 +178,10 @@
   nomarginpar,
   centering,
   text={150true mm,236true mm},
-  left=30true mm,
+  top=25true mm,
+  left=25true mm,
+  right=25true mm,
+  bottom=36true mm,
   head=5true mm,
   headsep=2true mm,
   footskip=0true mm,
@@ -184,6 +203,7 @@
 \RequirePackage{flafter}       % 使得所有浮动体不能被放置在其浮动环境之前，以免浮动体在引述它的文本之前出现.
 \RequirePackage{multirow}       %使用Multirow宏包，使得表格可以合并多个row格
 \RequirePackage{subfigure}%支持子图 %centerlast 设置最后一行是否居中
+\RequirePackage[subfigure]{ccaption} %支持双语标题
 
 %% 添加字号、行距等设置
 \renewcommand\normalsize{%
@@ -198,13 +218,16 @@
     \fontsize{#2}{##1\dimexpr #2}\selectfont
   }
 }
+
 \hit@def@fontsize{dachu}{58bp}
 \hit@def@fontsize{chuhao}{42bp}
 \hit@def@fontsize{xiaochu}{36bp}
 \hit@def@fontsize{yihao}{26bp}
 \hit@def@fontsize{xiaoyi}{24bp}
 \hit@def@fontsize{erhao}{22bp}
+% \newcommand{\sanhao}{\zihao{-2}}
 \hit@def@fontsize{xiaoer}{18bp}
+% \newcommand{\sanhao}{\zihao{3}}
 \hit@def@fontsize{sanhao}{16bp}
 \hit@def@fontsize{xiaosan}{15bp}
 \hit@def@fontsize{sihao}{14bp}
@@ -219,7 +242,6 @@
 \hit@def@fontsize{bahao}{5bp}
 
 %% 进行字号、行距等设置
-\setlength{\parindent}{2\ccwd}
 \ctexset{%
   section={
     afterindent=true,
@@ -229,26 +251,25 @@
     aftername=\enspace,
     fixskip=true,
     break={},
-   },
+  },
   subsection={
-      afterindent=true,
-      beforeskip={7.5bp},
-      afterskip={7.5bp},
-      format={\heiti\sihao[1.25]},
-      aftername=\enspace,
-      fixskip=true,
-      break={},
-    },
+    afterindent=true,
+    beforeskip={7bp},
+    afterskip={7bp},
+    format={\heiti\sihao[1.25]},
+    aftername=\enspace,
+    fixskip=true,
+    break={},
+  },
   subsubsection={
-      afterindent=true,
-      beforeskip={0bp},
-      afterskip={0bp},
-      format={\heiti\normalsize},
-      % format={\heiti\xiaosi},
-      aftername=\enspace,
-      fixskip=true,
-      break={},
-    },
+    afterindent=true,
+    beforeskip={3bp},
+    afterskip={3bp},
+    format={\heiti\normalsize},
+    aftername=\enspace,
+    fixskip=true,
+    break={},
+  },
   paragraph/afterindent=true,
   subparagraph/afterindent=true
 }
@@ -262,9 +283,12 @@
   \csname #1\endcsname{}
 }
 
-\hit@def@term{ctitlecover}
-\hit@def@term{cstudent}
+\hit@def@term{ctitleone}
+\hit@def@term{ctitletwo}
+\hit@def@term{csubject}
+\hit@def@term{cauthor}
 \hit@def@term{cstudentid}
+\hit@def@term{caffil}
 \hit@def@term{csupervisor}
 \hit@def@term{cdate}
 
@@ -274,103 +298,86 @@
   \expandafter\gdef\csname #1\endcsname##1{
     \@for\reserved@a:=##1\do{
       \expandafter\ifx\csname hit@#1\endcsname\@empty\else
-        \expandafter\g@addto@macro\csname hit@#1\endcsname{%
-          \ignorespaces\csname hit@#1@separator\endcsname}
+      \expandafter\g@addto@macro\csname hit@#1\endcsname{%
+        \ignorespaces\csname hit@#1@separator\endcsname}
       \fi
       \expandafter\expandafter\expandafter\g@addto@macro%
       \expandafter\csname hit@#1\expandafter\endcsname\expandafter{\reserved@a}
     }
   }
 }
-
 \newcommand{\schoolsep}{\hspace{4pt}}
-\newcommand{\reportsep}{\hspace{4.1pt}}
+\newcommand{\reportsep}{\hspace{4.2pt}}
 \def\hitsetup{\kvsetkeys{hit}}
-\RequirePackage[absolute,overlay]{textpos}
-\setlength{\TPHorizModule}{\textwidth}
-\setlength{\TPVertModule}{\textheight}
-\newcommand{\content}[1]{\underline{\makebox[7.3cm]{\textbf{#1}}}}
 \newcommand{\hit@report@titlepage@graduate}{
-  \begin{textblock}{1}(0.463,0.21)
-    \zihao{-2}{\CJKfamily{kaiti2312}\textbf{哈{\schoolsep}尔{\schoolsep}滨{\schoolsep}工{\schoolsep}业{\schoolsep}大{\schoolsep}学}}
-  \end{textblock}
-  \begin{textblock}{1}(0.336,0.303)
-    \zihao{2}\textbf{硕{\reportsep}士{\reportsep}学{\reportsep}位{\reportsep}论{\reportsep}文{\reportsep}中{\reportsep}期{\reportsep}报{\reportsep}告}
-  \end{textblock}
-  {
-    \vspace*{5.45cm}
+  \ifthenelse
+  {\equal{\hit@fontset}{siyuan}}%
+  {\xiaosi[1]\vspace*{0.65em}}%
+  {\xiaosi[1]\textcolor[rgb]{1,1,1}{\songti{\hit@hi}}}%
+
+  \vspace*{4.2em}
+  % \hspace*{\fill} \hspace*{\fill}
+
+  % \hspace*{11.1em}
+  \hspace*{4.6cm}
+  % \begin{center}
+  \zihao{-2}{\CJKfamily{kaiti2312}\textbf{哈{\schoolsep}尔{\schoolsep}滨{\schoolsep}工{\schoolsep}业{\schoolsep}大{\schoolsep}学}}
+    % \zihao{-2}\CJKfamily{kaiti2312}\textbf{哈\hfill 尔\hfill 滨\hfill 工\hfill 业\hfill 大\hfill 学}
+  % \end{center}
+  % \hspace*{11em}
+
+  \vspace{2.1em}
+  \hspace*{4.1em}
+  % \begin{center}
+  \zihao{2}\textbf{硕{\reportsep}士{\reportsep}学{\reportsep}位{\reportsep}论{\reportsep}文{\reportsep}中{\reportsep}期{\reportsep}报{\reportsep}告}
+  % \end{center}
+
+  \vspace{2.1mm}
+  \parbox[t][3cm][t]{\textwidth}{
     \begin{center}
-      \zihao{-2}\textbf{题\hspace{9pt}目：\hit@ctitlecover}
+      % \songti\xiaoer\textbf{题\hspace{\ccwd}目：\hit@ctitlecover}
+      \zihao{-2}\textbf{题\hspace{9pt}目：\hit@ctitleone \\ \hit@ctitletwo}
     \end{center}
   }
-  % \begin{textblock*}{\linewidth}(0cm,9.5cm)%(-0.07,0.38)
-    % \begin{minipage}{\textwidth}
-        % \parbox[t][3cm][t]{\textwidth}{
-            % \songti\xiaoer\textbf{题\hspace{\ccwd}目：\hit@ctitlecover}
-        % }
-    % \end{minipage}
-  % \end{textblock*}
-  \begin{textblock}{1}(0.205,0.512)
-    \zihao{3}
-    \renewcommand{\arraystretch}{1.9}
-    \begin{tabular}{l@{}c}
-      \textbf{院{\hfill}（系）}        & \content{数学学院}             \\
-      \textbf{学{\hfill}科}          & \content{基础数学}             \\
-      \textbf{导{\hfill}师}          & \content{\hit@csupervisor} \\
-      \textbf{研{\hfill}究{\hfill}生} & \content{\hit@cstudent}     \\
-      \textbf{学{\hfill}号}          & \content{\hit@cstudentid}  \\
-      \textbf{中期报告日期}              & \content{\hit@cdate}       \\
-    \end{tabular}
-    % \renewcommand{\arraystretch}{1}
-  \end{textblock}
-  \begin{textblock}{1}(0.549,1.056)
+  \vspace*{-2.6mm}
+  % \parbox[b][3cm][t]{\textwidth}{
+    \begin{center}\zihao{3}
+      \renewcommand{\arraystretch}{1.9}
+      \begin{tabular}{l@{}c}
+        \textbf{\makebox[6\ccwd][s]{院（系}）} & \underline{\makebox[7cm]{\textbf{数学学院}}}\\
+        \textbf{\makebox[6\ccwd][s]{学科}} & \underline{\makebox[7cm]{\textbf{基础数学}}}\\
+        \textbf{\makebox[6\ccwd][s]{导师}} & \underline{\makebox[7cm]{\textbf{\hit@csupervisor}}}\\
+        \textbf{\makebox[6\ccwd][s]{研究生}} & \underline{\makebox[7cm]{\textbf{\hit@cauthor}}}\\
+        \textbf{\makebox[6\ccwd][s]{学号}} & \underline{\makebox[7cm]{\textbf{\hit@cstudentid}}}\\
+        \textbf{中期报告日期} & \underline{\makebox[7cm]{\textbf{\hit@cdate}}}\\
+      \end{tabular}
+      \renewcommand{\arraystretch}{1}
+    \end{center}
+    % \vspace*{5mm}
+  % }
+  \vfill
+  \begin{center}
     \zihao{3}\textbf{研究生院制}
-  \end{textblock}
+  \end{center}
+  % \hspace*{\fill}
+  \vspace*{4.65mm}
 }
 
-\ExplSyntaxOn
-  % renew \CTEX@toc@width@n,
-  % add width of a space to numwidth (stored in \@tempdima)
-  \cs_set_protected:Npn \CTEX@toc@width@n #1
-  {
-    \hbox_set:Nn \l__ctex_tmp_box {#1\,}
-    \dim_set:Nn \@tempdima
-    {
-      \dim_max:nn { \@tempdima }
-      { \box_wd:N \l__ctex_tmp_box }
-    }
-  }
-  \RequirePackage[subfigure]{tocloft}
-  \renewcommand{\cfttoctitlefont}{\hfill\xiaoer\heiti}
-  \renewcommand{\cftaftertoctitle}{\hfill\mbox{}}
-  \renewcommand{\cftsecfont}{\heiti}
-  \renewcommand{\cftsecpagefont}{}
-  \renewcommand{\cftsecdotsep}{\cftdotsep}
-  \renewcommand{\cftsecleader}{\cftdotfill{\cftsecdotsep}}
-  \renewcommand{\cftdotsep}{1}
-  \setlength{\cftaftertoctitleskip}{40pt}
-  \setlength{\cftbeforesecskip}{1.2ex}
-  \setlength{\cftbeforesubsecskip}{1.2ex}
-  \setlength{\cftbeforesubsubsecskip}{1.2ex}
-  \setlength{\cftsubsecindent}{1em}
-  \setlength{\cftsubsubsecindent}{2em}
-  \setlength{\cftsecnumwidth}{1.5em}
-  \setlength{\cftsubsecnumwidth}{0em}
-  \setlength{\cftsubsubsecnumwidth}{0em}
-\ExplSyntaxOff
-
+\RequirePackage{setspace}
 \def\makecover{
   \begin{titlepage}
     \hit@report@titlepage@graduate
     \clearpage
     \ifhit@print \thispagestyle{empty}\mbox{} \clearpage \fi
     \ifhit@toc
-      % \begin{spacing}{1.2} \tableofcontents \end{spacing}
-      \newpage
-      \tableofcontents
+      \begin{spacing}{1}
+        \thispagestyle{empty}
+        \tableofcontents
+      \end{spacing}
       \clearpage
     \fi
   \end{titlepage}
+  \pagenumbering{arabic}
 }
 
 %% 引用和参考文献格式
@@ -391,7 +398,7 @@
     \addtolength{\itemsep}{-0.8em}
     \usecounter{enumiv}%
     \let\p@enumiv\@empty
-    \renewcommand\theenumiv{\@arabic\c@enumiv}}%
+  \renewcommand\theenumiv{\@arabic\c@enumiv}}%
   \sloppy\frenchspacing
   \flushbottom
   \clubpenalty0
@@ -402,15 +409,11 @@
 }
 {\def\@noitemerr
   {\@latex@warning{Empty `thebibliography' environment}}%
-  \endlist\frenchspacing}
+\endlist\frenchspacing}
 
 %% 杂项
 \AtEndOfClass{\input{hithesisart.cfg}}
 \AtEndOfClass{\sloppy}
-
-\newcommand{\differential}{\mathop{}\!\mathrm{d}}
-\newcommand{\relphantom}[1]{\mathrel{\phantom{#1}}\negmedspace {}}
-\newcommand{\realset}{\mathbb{R}}
 
 \endinput
 %%

@@ -1,0 +1,206 @@
+\subsection{准确解部分}
+对方程 xx 证明了Peano存在性定理和Picard存在唯一性定理，如下所示。
+\begin{equation}\label{方程}
+    \begin{cases}%dcases
+        \Caputo x(t) = f(t, x(t), x(qt)),&t\geqslant 0,\\
+        x(0) = x_0 \text{ is given.}
+    \end{cases}
+\end{equation}
+\begin{theorem}
+    \cref{方程} always has a mild solution on a small interval $[0,h]$.
+\end{theorem}
+\begin{proof}
+    记$M<\infty$是集合$\left\{\left\|f(t,u,v)\right\|\colon t\in [0,1], u,v\in B_{2\|x_0\|}(0)\right\}$的一个上界，并取$0<h\leqslant 1$充分小，使得$\Gamma(\alpha + 1)^{-1} h^\alpha M \leqslant \|x_0\|$. 对于正整数$m$，作$t^m_{n}:=nh/m,\,n=0,1,2,\dots,m$, 然后按下式构造$\left(x^m_{n}\right)_{n=0}^m\subset \realset^n$,
+    \begin{equation}\label{PicardSequence}
+        x^m_{n}=x_0+\Gamma(\alpha)^{-1}\sum_{k=1}^n\int_{t_{k-1}}^{t_k}\left(t_n-s\right)^{\alpha-1}f\bigl(s,x^m_{k-1},x^m_{q^m_{k-1}}\bigr)\differential s,\,n=1,2,\dots,m,
+    \end{equation}
+    其中$q^m_{k}:=\lfloor qt^m_k \rfloor$. 利用这些有限长的序列，分段线性插值地构造连续函数$\left(x^m\right)_{m=1}^\infty\colon[0,h]\to \realset^n$，即
+    \begin{equation*}
+        x^m(t):=\frac{t^m_n-t}{t^m_n-t^m_{n-1}}x^m_{n-1}+\frac{t-t^m_{n-1}}{t^m_n-t^m_{n-1}}x^m_{n},\,t^m_{n-1}\leqslant t\leqslant t^m_n.
+    \end{equation*}
+    另外，为方便起见，对于$\delta>0$, 记$D(\delta):=\left\{(s,t)\in [0,h]\times [0,h]\colon 0\leqslant t-s<\delta\right\}$.
+
+    现在证明$\|x^m(t_n)\|\leqslant 2\|x_0\|,\,0\leqslant t\leqslant h,n=0,1,2,\dots,m,m\in \positiveinteger$. 施归纳于$n$. $n=0$时显然。假设对于$0\leqslant k<n$成立$\|x^m(t_k)\|\leqslant 2\|x_0\|$, 根据$M$和$h$的定义,
+    \begin{align*}
+        \left\|x^m(t_n)\right\|&\leqslant \|x_0\|+\Gamma(\alpha)^{-1}\sum_{k=1}^{n}\int_{t_{k-1}}^{t_k} \left(t_n-s\right)^{\alpha-1} \bigl\|f\bigl(s,x^m_{k-1},x^m_{q^m_{k-1}}\bigr)\bigr\| \differential s
+        \\ &\leqslant \|x_0\|+\Gamma(\alpha)^{-1} \sum_{k=1}^{n}\int_{t_{k-1}}^{t_k} \left(t_n-s\right)^{\alpha-1} M \differential s
+        \\ &= \|x_0\|+\Gamma(\alpha)^{-1} M \int_{0}^{t_n} \left(t_n-s\right)^{\alpha-1} \differential s
+        \\ &= \|x_0\|+\Gamma(\alpha+1)^{-1} M t_n^\alpha
+        \\ &\leqslant \|x_0\|+\Gamma(\alpha+1)^{-1} M h^\alpha
+        \leqslant 2\|x_0\|,
+    \end{align*}
+    这样就完成了归纳。于是对任何$t\in [0,h]$, $t$必然落在某个区间$\left[t^m_{n-1},t^m_n\right]$中，从而
+    \begin{equation*}
+        \left\|x^m(t)\right\|\leqslant \frac{t^m_n-t}{t^m_n-t^m_{n-1}}\left\|x^m_{n-1}\right\|+\frac{t-t^m_{n-1}}{t^m_n-t^m_{n-1}}\left\|x^m_{n}\right\|\leqslant 2\|x_0\|.
+    \end{equation*}
+    因此对每个$t\in [0,h]$都有$\left(x^m(t)\right)_{m=1}^\infty$在$\realset^n$中相对紧.
+
+    然后讨论连续函数列$\left(x^m\right)_{m=1}^\infty$的等度连续性。首先，对于$0\leqslant k\leqslant n\leqslant m$, 有
+    \begin{align*}
+        &\relphantom{\leqslant}\Gamma(\alpha)\left\| x^m_n-x^m_k \right\|
+        \\ &\leqslant \sum_{j=1}^{k}\int_{t^m_{j-1}}^{t^m_j}\left(\left(t^m_k-s\right)^{\alpha-1}-\left(t^m_n-s\right)^{\alpha-1}\right)M\differential s+\sum_{j=k+1}^{n}\int_{t^m_{j-1}}^{t^m_j}\left(t^m_n-s\right)^{\alpha-1}M\differential s
+        \\ &=M\cdot\Bigl(\int_{0}^{t^m_k}\left(\left(t^m_k-s\right)^{\alpha-1}-\left(t^m_n-s\right)^{\alpha-1}\right)\differential s+\int_{t^m_k}^{t^m_n}\left(t^m_n-s\right)^{\alpha-1}\differential s\Bigr)
+        \\ &=M\alpha^{-1}\cdot \left(\left(t^m_k\right) ^\alpha-\left(t^m_n\right)^\alpha+2\left(t^m_n-t^m_k\right)^\alpha\right)\leqslant 2M\alpha^{-1}\left(t^m_n-t^m_k\right)^\alpha.
+    \end{align*}
+    而至于$0\leqslant s\leqslant t\leqslant h$, 不妨设$s\in\left[t^m_{k-1},t^m_k\right],t\in\left[t^m_{n-1},t^m_n\right]$. 如果$k<n$, 那么
+    \begin{align*}
+        &\relphantom{\leqslant}\left\| x^m(t)-x^m(s) \right\|
+        \\ &\leqslant \left\| x^m(t)-x^m(t_{n-1}) \right\|+\left\| x^m_{n-1}-x^m_k \right\|+\left\| x^m(t_k)-x^m(s) \right\|
+        \\ &\leqslant \left\|x^m_{n}-x^m_{n-1}\right\|+\left\| x^m_{n-1}-x^m_k \right\|+\left\|x^m_{k}-x^m_{k-1}\right\|
+        \\ &\leqslant 2M\Gamma(\alpha+1)^{-1}\left(\left(t^m_n-t^m_{n-1}\right)^\alpha + \left( t^m_{n-1}-t^m_{k}\right)^\alpha + \left(t^m_k-t^m_{k-1}\right)^\alpha\right)
+        \\ &\leqslant 2M\Gamma(\alpha+1)^{-1}\left(2(h/m)^\alpha+(t-s)^\alpha\right),
+    \end{align*}
+    而若是$k=n$, 则有
+    \begin{align*}
+        \left\| x^m(t)-x^m(s) \right\| &\leqslant \left\|x^m_{n}-x^m_{n-1}\right\|
+        \\ &\leqslant 2M\Gamma(\alpha+1)^{-1}\left(t^m_n-t^m_{n-1}\right)^\alpha
+        \\ &\leqslant 2M\Gamma(\alpha+1)^{-1}(h/m)^\alpha,
+    \end{align*}
+    总之
+    \begin{equation}\label{xmts}
+        \left\| x^m(t)-x^m(s) \right\| \leqslant 2M\Gamma(\alpha+1)^{-1}\left(2(h/m)^\alpha+(t-s)^\alpha\right).
+    \end{equation}
+    任给$\varepsilon>0$, 取$N=N(\varepsilon)\in \positiveinteger$和$\delta_0=\delta_0(\varepsilon)>0$分别满足$2M\Gamma(\alpha+1)^{-1}\delta_0^\alpha < \varepsilon/2$和$4M\Gamma(\alpha+1)^{-1}(h/N)^\alpha<\varepsilon/2$. 由式\eqref{xmts}可知，$\left\| x^m(t)-x^m(s) \right\| < \varepsilon$对任何$m>N$及$(s,t)\in D(\delta_0)$成立。至于$1\leqslant m\leqslant N$, 由于每个$x^m$都是$[0,h]$上的一致连续函数，故存在有限个只依赖于$\varepsilon$的正数$\left(\delta_m\right)_{m=1}^N$, 使得对于$(s,t)\in D(\delta_m)$成立$\left\| x^m(t)-x^m(s) \right\| < \varepsilon$. 现在取$\delta=\delta(\varepsilon):=\min_{0\leqslant m\leqslant N} \delta_m>0$, 那么当$0\leqslant s\leqslant t \leqslant h$且$t-s<\delta$时，$\left\| x^m(t)-x^m(s) \right\| < \varepsilon$对于任何$m\in \positiveinteger$成立。这说明$\left(x^m\right)_{m=1}^\infty$是$C[0,h]$中的一致等度连续函数列。
+
+    使用Arzel\`a-Ascoli定理，我们得到$\left\{x^m\colon m\in \positiveinteger\right\}$在$C\left([0,h],\realset^n\right)$中相对紧，故有一致收敛子列，这个子列仍记为$\left(x^m\right)_{m=1}^\infty$, 并设其极限函数为$x\in C\left([0,h],\realset^n\right)$. 任给$\varepsilon>0$, 由于$f$在紧集$[0,h]\times \overline{B_{2\|x_0\|}(0)}\times \overline{B_{2\|x_0\|}(0)}\subset [0,h]\times \realset^n\times \realset^n$上一致连续，故存在$\delta_1=\delta_1(\varepsilon)>0$使得$\|f(t,u,v)-f(t,x,y)\|<\varepsilon \alpha \Gamma(\alpha) h^{-\alpha} / 4$对$t\in [0,h]$以及满足$\|u-x\|+\|v-y\|<\delta_1$的$u,v,x,y\in B_{2\|x_0\|}(0)$成立。取$N_1=N_1(\delta_1)\in \positiveinteger$, 使得当$m>N_1$且$t\in [0,h]$时成立$\left\|x^m(t)-x(t)\right\|<\delta_1/2$, 从而
+    \begin{equation}\label{xmx}
+        \begin{aligned}
+            &\relphantom{\leqslant}\left\|\int_{0}^{t}(t-s)^{\alpha-1}f(s,x^m(s),x^m(qs))\differential s - \int_{0}^{t}(t-s)^{\alpha-1}f(s,x(s),x(qs))\differential s\right\|
+            \\ &\leqslant \int_{0}^{t}(t-s)^{\alpha-1} \frac{\varepsilon \alpha \Gamma(\alpha) h^{-\alpha}}{4} \differential s=\varepsilon \Gamma(\alpha) h^{-\alpha} t^\alpha / 4 \leqslant \varepsilon\Gamma(\alpha)/4.
+        \end{aligned}
+    \end{equation}
+
+    由$\left(x^m\right)_{m=1}^\infty$的等度连续性，存在$\delta_2=\delta_2(\varepsilon)>0$使得$\left\|x^m(t)-x^m(s)\right\|<\min \left(\delta_1/2,\allowbreak\varepsilon/4\right)$对任何$m\in \positiveinteger$及$(s,t)\in D\left(\delta_2\right)$成立。取$N_2=N_2(\delta_2)\in \positiveinteger$使得$h/N_2<\delta_2$. 一方面，注意到$m>N_2$时总有$t_n-t_{n-1}<\delta_2<\delta_1/2,\,n=0,1,2,\dots,m$, 于是$\left\|f\bigl(t,x^m_{n-1},x^m_{q^m_{n-1}}\bigr)-f\bigl(t,x^m(t),x^m(qt)\bigr)\right\|<\varepsilon \alpha \Gamma(\alpha) h^{-\alpha} / 4,\,t\in\left[t^m_{n-1},t^m_n\right]$, 从而
+    \begin{equation}\label{tn}
+        \begin{aligned}
+            &\relphantom{\leqslant}\Gamma(\alpha)\left\|x^m(t_n)-x_0-\Gamma(\alpha)^{-1}\int_{0}^{t_n}\left(t_n-s\right)^{\alpha-1}f(s,x^m(s),x^m(qs))\differential s\right\|
+            \\ &\leqslant \sum_{k=1}^{n}\int_{t_{k-1}}^{t_k}\left(t_n-s\right)^{\alpha-1}\left\|f\bigl(s,x^m_{k-1},x^m_{q^m_{k-1}}\bigr)-f\bigl(s,x^m(s),x^m(qs)\bigr)\right\|\differential s
+            \\ &\leqslant \sum_{k=1}^{n}\int_{t_{k-1}}^{t_k}\left(t_n-s\right)^{\alpha-1} \frac{\varepsilon \alpha \Gamma(\alpha) h^{-\alpha}}{4} \differential s
+            \\ &=\int_{0}^{t_n} \left(t_n-s\right)^{\alpha-1} \frac{\varepsilon \alpha \Gamma(\alpha) h^{-\alpha}}{4} \differential s
+            \leqslant \varepsilon\Gamma(\alpha)/4.
+        \end{aligned}
+    \end{equation}
+    另一方面，任意$t\in [0,h]$, 设$t\in\left[t_{n-1},t_n\right]$, 则对任何$m\in \positiveinteger$成立
+    \begin{equation}\label{xmtnt}
+        \left\|x^m(t)-x^m(t_n)\right\|<\varepsilon/4.
+    \end{equation}
+
+    根据\cite[Proposition 3.2]{Webb}，$x,f\in C([0,h],\realset^n)$蕴涵$t\mapsto \Gamma(\alpha)^{-1}\int_{0}^{t}(t-s)^{\alpha-1}f(s,x(s),x(qs))\differential s\in C([0,h],\realset^n)$, 因此可取$N_3=N_3(\varepsilon)\in \positiveinteger$充分大（从而$h/N_3>0$足够小），使得$m>N_3$且$(s,t)\in D(h/N_3)$时，$\Gamma(\alpha)^{-1}\allowbreak\left\|\int_{0}^{t}(t-\tau)^{\alpha-1}f(\tau,x(\tau),x(q\tau))\differential \tau\right.\allowbreak-\left.\int_{0}^{s}(s-\tau)^{\alpha-1}f(\tau,x(\tau),x(q\tau))\differential \tau\right\|\allowbreak <\varepsilon/4$. 于是当$t\in [0,h]$时，设$t\in\left[t_{n-1},t_n\right]$, 有
+    \begin{equation}\label{xtnt}
+        \begin{multlined}
+            \Gamma(\alpha)^{-1}\left\|\int_{0}^{t_n}(t_n-s)^{\alpha-1}f(s,x(s),x(qs))\differential s\right.
+            \\-\left.\int_{0}^{t}(t-s)^{\alpha-1}f(s,x(s),x(qs))\differential s\right\|<\varepsilon/4.
+        \end{multlined}
+    \end{equation}
+    
+    现在取$N=N(\varepsilon):=\max \left\{N_1,N_2,N_3\right\}$, 根据\cref{xmx,tn,xmtnt,xtnt}以及三角不等式，当$m>N,t\in [0,h]$时，设$t\in \left[t_{n-1},t_n\right]$, 那么可以估计
+    \begin{align*}
+        &\relphantom{\leqslant}\left\|x^m(t)-x_0-\Gamma(\alpha)^{-1}\int_{0}^{t}(t-s)^{\alpha-1}f(s,x(s),x(qs))\differential s\right\|
+        \\ &\leqslant \left\|x^m(t)-x^m(t_n)\right\|
+        \\ &\relphantom{\leqslant}+\left\|x^m(t_n)-x_0-\Gamma(\alpha)^{-1}\int_{0}^{t_n}(t_n-s)^{\alpha-1}f(s,x^m(s),x^m(qs))\differential s\right\|
+        \\ &\relphantom{\leqslant}+\left\|x_0+\Gamma(\alpha)^{-1}\int_{0}^{t_n}(t_n-s)^{\alpha-1}f(s,x^m(s),x^m(qs))\differential s\right.
+        \\ &\relphantom{\leqslant+} \phantom{\left\|\right.} \left.-x_0-\Gamma(\alpha)^{-1}\int_{0}^{t_n}(t_n-s)^{\alpha-1}f(s,x(s),x(qs))\differential s\right\|
+        \\ &\relphantom{\leqslant}+\left\|x_0+\Gamma(\alpha)^{-1}\int_{0}^{t_n}(t_n-s)^{\alpha-1}f(s,x(s),x(qs))\differential s\right.
+        \\ &\relphantom{\leqslant+} \phantom{\left\|\right.} \left.-x_0-\Gamma(\alpha)^{-1}\int_{0}^{t}(t-s)^{\alpha-1}f(s,x(s),x(qs))\differential s\right\|
+        <\varepsilon,
+    \end{align*}
+    即$\lim_{m\to \infty}x^m(t)=x_0+\Gamma(\alpha)^{-1}\int_{0}^{t}(t-s)^{\alpha-1}f(s,x(s),x(qs))\differential s,\,\allowbreak 0\leqslant t\leqslant h$. 而极限的唯一性导致
+    \begin{equation*}
+        x(t)=\Gamma(\alpha)^{-1}\int_{0}^{t}(t-s)^{\alpha-1}f(s,x(s),x(qs))\differential s,\,0\leqslant t\leqslant h,
+    \end{equation*}
+    从而$x\in C([0,h],\realset^n)$是方程\eqref{方程}在$[0,h]$上的一个弱解。
+\end{proof}
+\begin{theorem}\label[theorem]{Picard}
+    如果$f(t,\cdot,\cdot)$对$t\in [0,\infty)$一致地局部Lipschitz, 即对任何$r>0$, 存在不依赖于$t$的$L=L(r)\geqslant 0$, 使得
+    \begin{equation}\label{Lipschitz}
+        \| f(t,x,y) - f(t,u,v) \| \leqslant L\cdot (\|x-u\| + \|y-v\|)
+    \end{equation}
+    对任何$t\in [0,\infty)$以及$x,y,u,v\in B_r(0)$成立，那么方程\eqref{方程}的弱解局部存在，并在存在区间上唯一。
+    % Moreover, if $L$ is independent of $R$, then the unique mild solution exists on the whole $[0,\infty)$.
+\end{theorem}
+\begin{proof}
+    \textbf{（存在性）} 构造Picard序列$\left(x_n\right)_{n=0}^\infty\colon [0,\infty)\to \realset^n$满足
+    \begin{equation*}
+        \left\{\begin{aligned}
+            x^{n+1}(t)&:=x_0 + \Gamma(\alpha)^{-1} \textstyle\int_0^t (t-s)^{\alpha-1} f(s,x^n(s),x^n(qs))\differential s, & n\in \naturalset,\\
+            x^0(t)&:=x_0. & {}
+        \end{aligned}\right.
+    \end{equation*}
+    记$M<\infty$是集合$\left\{\left\|f(t,u,v)\right\|\colon t\in [0,1], u,v\in B_{2\|x_0\|}(0)\right\}$的一个上界，并取$0<h\leqslant 1$充分小，使得$\Gamma(\alpha + 1)^{-1} h^\alpha M \leqslant \|x_0\|$. 可以归纳地证明$\left\|x^{n}(t)\right\|\leqslant 2\|x_0\|,\;t\in [0,h],n\in \naturalset$. 取$L:=L(2\|x_0\|)$, 那么对于$t\in [0,h],n\in \positiveinteger$,
+    \begin{equation}
+        \begin{aligned}
+            \left\| x^{n+1}(t)-x^n(t) \right\|&\leqslant L\Gamma(\alpha)^{-1}\int_0^t (t-s)^{\alpha-1} \\ &\relphantom{\leqslant}\bigl(\left\|x^n(s)-x^{n-1}(s)\right\| + \left\|x^n(qs)-x^{n-1}(qs)\right\|\bigr) \differential s.
+        \end{aligned}
+    \end{equation}
+
+    现在归纳地说明
+    \begin{equation}\label{Picard逐次估计}
+        \left\| x^{n+1}(t) - x^n(t) \right\|\leqslant \frac{L^n M}{\Gamma(\alpha)^{n+1} \alpha} t^{(n+1)\alpha} \prod_{k=1}^n \left(1+q^{k\alpha}\right) \Beta(\alpha, k\alpha+1),\,t\in [0,h],n\in\naturalset.
+    \end{equation}
+    当$n=0$时，
+    \begin{align*}
+        \left\| x^1(t)-x^0(t) \right\|&=\| x^1(t)-x_0 \|\\
+        &=\frac{1}{\Gamma(\alpha)}\left\| \int_0^t (t-s)^{\alpha-1} f(s,x_0,x_0)\differential s\right\|\\
+        &\leqslant \frac{1}{\Gamma(\alpha)}\int_0^t (t-s)^{\alpha-1} M\differential s\\
+        &=\Gamma(\alpha)^{-1} \alpha^{-1} t^\alpha M.
+    \end{align*}
+    假定式\eqref{Picard逐次估计}在$n$取$n-1$时成立，然后
+    \begin{align*}
+        &\mathrel{\phantom{\leqslant}} \left\| x^{n+1}(t)-x^n(t) \right\| \\ &\leqslant \frac{L}{\Gamma(\alpha)}\int_0^t (t-s)^{\alpha-1} \bigl(\left\|x^n(s)-x^{n-1}(s)\right\| + \left\|x^n(qs)-x^{n-1}(qs)\right\|\bigr) \differential s\\
+        &\leqslant \frac{L^{n} M}{\Gamma(\alpha)^{n+1} \alpha} \Bigl(\prod_{k=1}^{n-1}\left(1+q^{k\alpha}\right) \Beta(\alpha, k\alpha+1)\Bigr)\int_0^t (t-s)^{\alpha-1} \bigl(s^{n\alpha} + (qs)^{n\alpha}\bigr) \differential s\\
+        &=\frac{L^{n} M}{\Gamma(\alpha)^{n+1} \alpha} \Bigl(\prod_{k=1}^{n-1}\left(1+q^{k\alpha}\right) \Beta(\alpha, k\alpha+1)\Bigr) \left(1+q^{n\alpha}\right) \int_0^t (t-s)^{\alpha-1} s^{n\alpha} \differential s\\
+        &=\frac{L^{n} M}{\Gamma(\alpha)^{n+1} \alpha} \Bigl(\prod_{k=1}^{n-1}\left(1+q^{k\alpha}\right) \Beta(\alpha, k\alpha+1)\Bigr) \left(1+q^{n\alpha}\right) t^{n\alpha+\alpha}\Beta(\alpha, n\alpha+1)\\
+        &=\frac{L^n M}{\Gamma(\alpha)^{n+1} \alpha} t^{(n+1)\alpha} \prod_{k=1}^n \left(1+q^{k\alpha}\right) \Beta(\alpha, k\alpha+1).
+    \end{align*}
+    由数学归纳原理，式\eqref{Picard逐次估计}成立。注意到
+    \begin{equation*}
+        \prod_{k=1}^n \left(1+q^{k\alpha}\right)\leqslant \prod_{k=1}^n \exp\left(q^{k\alpha}\right)=\exp \sum_{k=1}^n \left(q^\alpha\right)^k\leqslant \exp \frac{q^\alpha}{1-q^\alpha}
+    \end{equation*}
+    和
+    \begin{equation*}
+        \prod_{k=1}^n \Beta(\alpha, k\alpha+1)=\prod_{k=1}^n \frac{\Gamma(\alpha) \Gamma(k\alpha+1)}{\Gamma((k+1)\alpha+1)}=\Gamma(\alpha)^n \frac{\Gamma(\alpha+1)}{\Gamma((n+1)\alpha+1)},
+    \end{equation*}
+    我们有
+    \begin{equation}
+        \left\| x^{n+1}(t) - x^n(t) \right\|\leqslant \frac{L^n M t^{(n+1)\alpha}}{\Gamma((n+1)\alpha+1)} \exp \frac{q^\alpha}{1-q^\alpha},\,t\in [0,h].
+    \end{equation}
+    由Cauchy-Hadamard公式和Stirling公式易知Mittag-Leffler函数$E_\alpha(z)=\sum_{n=0}^{\infty}\Gamma(\alpha n+1)^{-1}z^n$对于任何$z\in \complexset$收敛，然后根据Weierstrass M判别法就得到函数项级数$\sum_{n=0}^\infty \left(x^{n+1}-x^n\right)$在$[0,h]$上绝对一致收敛，于是函数列$\left(x^n\right)_{n=0}^\infty$在$[0,h]$上存在一致极限$x$. 这说明任取$\varepsilon>0$, 存在$N=N(\varepsilon)\in \naturalset$, 使得$\left\|x^n(t)-x(t)\right\|<\varepsilon$对于$n>N$和$t\in [0,h]$成立。这样一来，当$t\in [0,h]$时，
+    \begin{align*}
+        &\relphantom{\leqslant} \left\| \int_0^t (t-s)^{\alpha-1} f(s,x^n(s),x^n(qs))\differential s - \int_0^t (t-s)^{\alpha-1} f(s,x(s),x(qs))\differential s \right\|\\
+        &\leqslant \int_0^t (t-s)^{\alpha-1} L\cdot\left(\left\|x^n(s)-x(s)\right\|+\left\|x^n(qs)-x(qs)\right\|\right) \differential s\\
+        &\leqslant 2\varepsilon L\int_0^t (t-s)^{\alpha-1}\differential s = 2\varepsilon L\alpha^{-1}t^\alpha,
+    \end{align*}
+    因此
+    \begin{equation*}
+        \lim_{n\to\infty} \int_0^t (t-s)^{\alpha-1} f(s,x^n(s),x^n(qs))\differential s = \int_0^t (t-s)^{\alpha-1} f(s,x(s),x(qs))\differential s.
+    \end{equation*}
+    现在在式\eqref{PicardSequence}中命$n\to\infty$就得到
+    \begin{equation*}
+        x(t)=x_0 + \Gamma(\alpha)^{-1}\int_0^t (t-s)^{\alpha-1} f(s,x(s),x(qs))\differential s,\;0\leqslant t\leqslant h.
+    \end{equation*}
+
+    On the other hand, with the help of \cite[Proposition 3.2]{Webb}, one can deduce by induction that $\left(x^n\right)_{n=0}^\infty \subseteq C^{0,\alpha} \cap AC [0,h] \subseteq C[0,h]$. Then $x$, as the uniform limit of $\left(x^n\right)_{n=0}^\infty$, is also continuous on $[0,h]$. Now we can say $x$ is a mild solution of \cref{方程} on $[0,h]$, and the proof of existence is complete.
+
+    \textbf{（唯一性）} 设$0<T<\infty$, $x,y\in C[0,T]$都是方程\eqref{方程}的弱解。记$L:=L\left(\max\left(\max_{0\leqslant t\leqslant T}\|x(t)\|,\right.\right.\allowbreak\left.\left.\max_{0\leqslant t\leqslant T}\|y(t)\|\right)\right)$, 并作$S:=\{t\in [0,T]\colon x(t)\neq y(t)\},t_*:=\inf S$, 下证$t_*=\infty$. 反证，假设$0\leqslant t_*\leqslant T$, 分三种情况讨论。
+    \begin{description}
+        \item[如果$t_*=T$.] 那么在$[0,T)$上有$x=y$, 而$x,y$都是连续的，因此必在闭区间$[0,T]$上处处相等，此时$S=\varnothing,t_*=\infty$, 矛盾。
+        \item[如果$0<t_*<T$.] 那么在$[0,t_*)$上有$x=y$. 选取$\delta>0$充分小，使得$t_*+\delta\leqslant T$且$q\cdot (t_*+\delta)<t_*$, 然后就有$x(qt)=y(qt),\,0\leqslant t\leqslant t_*+\delta$. 于是当$t\in \left[0,t_*+\delta\right]$时，
+        \begin{align*}
+            \left\| x(t) - y(t) \right\| & \leqslant {L}{\Gamma(\alpha)}^{-1} \int_0^t (t-s)^{\alpha-1} \\ &\relphantom{\leqslant} \bigl(\|x(s)-y(s)\|+\|x(qs)-y(qs)\|\bigr) \differential s\\
+            &={L}{\Gamma(\alpha)}^{-1} \int_0^t (t-s)^{\alpha-1} \|x(s)-y(s)\| \differential s.
+        \end{align*}
+        此时利用分数阶的Gronwall不等式\cref{Gronwall}就得到在$\left[0,t_*+\delta\right]$上都有$x=y$, 故$t_*\geqslant t_*+\delta$, 而这是不可能的。
+        \item[如果$t_*=0$.] 选取$\delta\in (0,T]$充分小，使得$2L\Gamma(\alpha+1)^{-1}\delta^\alpha<1$. 当$t\in[0,\delta]$时，
+        \begin{align*}
+            &\relphantom{\leqslant}\left\| x(t) - y(t) \right\| \\& \leqslant \frac{L}{\Gamma(\alpha)} \int_0^t (t-s)^{\alpha-1} \bigl(\|x(s)-y(s)\|+\|x(qs)-y(qs)\|\bigr) \differential s\\
+            &\leqslant \frac{2L}{\Gamma(\alpha)} \Bigl(\max_{0\leqslant s\leqslant t}\|x(s)-y(s)\|\Bigr) \int_0^t (t-s)^{\alpha-1} \differential s\\
+            &=2L\Gamma(\alpha+1)^{-1}t^\alpha \max_{0\leqslant s\leqslant t}\|x(s)-y(s)\|.
+        \end{align*}
+        上式两边对$t\in[0,\delta]$取最大值，得到
+        \begin{equation*}
+            \max_{0\leqslant t\leqslant \delta}\|x(t)-y(t)\|\leqslant 2L\Gamma(\alpha+1)^{-1}\delta^\alpha \max_{0\leqslant t\leqslant \delta}\|x(t)-y(t)\|,
+        \end{equation*}
+        结合$\delta$的选取知道只可能有$\max_{0\leqslant s\leqslant \delta}\|x(s)-y(s)\|=0$, 即等式$x=y$至少在$[0,\delta]$上成立, 故$t_*\geqslant \delta$, 矛盾.
+    \end{description}
+    综合以上各种情况知$t_*\notin [0,T]$，只可能是$t_*=\infty$, 此时必有$S=\varnothing$, 故而$x$和$y$在整个$[0,T]$上相等。而如若$x,y$是$[0,\infty)$上方程\eqref{方程}的弱解，上述结果则表明它们在任何有限区间$[0,T]$上相等，因而在$[0,\infty)$上相等。唯一性证毕。
+\end{proof}

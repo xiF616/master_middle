@@ -29,32 +29,27 @@
 % print=true|false
 %   含义：是否在封面后增加一个空白页用于打印，默认false
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
+\usepackage[sort&compress, capitalise]{cleveref}
+\usepackage{mathtools}
+\newcommand{\RiemannLiouvilleIntegral}{I^\alpha_{0^+}}
+\newcommand{\Caputo}{{^C}{D}^\alpha_{0^+}}
+\newcommand{\naturalset}{\mathbb{N}}
+\newcommand{\complexset}{\mathbb{C}}
+\newcommand{\positiveinteger}{\mathbb{N_+}}
+\newcommand{\Beta}{\mathrm{B}}
 \graphicspath{{figures/}}
-\usepackage{stringstrings}
 \begin{document}
 \hitsetup{
-  %******************************
-  % 注意：
-  %   1. 配置里面不要出现空行
-  %   2. 不需要的配置信息可以删除
-  %******************************
-  ctitleone={一类具一般增长的非齐次分数阶椭圆型方程},
-  % 单行标题只填上面一个，第二行空着就是（但不要删掉下面一行代码）
-  ctitletwo={的Harnack不等式},
-  cauthor={薛琦},
-  cstudentid={22S012003},
-  csupervisor={张超教授},
-  % 日期自动使用当前时间，若需指定按如下方式修改：
+  ctitlecover={一类具一般增长的非齐次分数阶椭圆型方程\\的Harnack不等式},
+  cstudent={李云鹏},
+  cstudentid={22S012004},
+  csupervisor={雷强},
   cdate={2024年6月},
 }
-
 \makecover
 
 \section{课题主要研究内容及进度情况}
 \input{body/progress.tex}
-\subsection{yyy}
-\subsection{xxx}
 
 \section{目前已完成的研究工作及结果}
 \input{body/studied.tex}
@@ -67,6 +62,10 @@
 
 \section{如期完成全部论文工作的可能性}
 \input{body/probility.tex}
+
+\section{参考文献}
+\bibliographystyle{hithesis}
+\bibliography{reference}
 \end{document}
 
 % Local Variables:
