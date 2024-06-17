@@ -204,3 +204,107 @@
     \end{description}
     综合以上各种情况知$t_*\notin [0,T]$，只可能是$t_*=\infty$, 此时必有$S=\varnothing$, 故而$x$和$y$在整个$[0,T]$上相等。而如若$x,y$是$[0,\infty)$上方程\eqref{方程}的弱解，上述结果则表明它们在任何有限区间$[0,T]$上相等，因而在$[0,\infty)$上相等。唯一性证毕。
 \end{proof}
+
+\subsection{数值解理论}
+\begin{equation}\label{L1格式}
+    x^n=\left(t_n-t_{n-1}\right)^\alpha \Bigl(\Gamma(2-\alpha) f\left(t_n,x^n,\overline{x}^n\right) + \sum_{k=0}^{n-1} \left(a_{n,k+1}-a_{n,k}\right) x^k\Bigr),
+\end{equation}
+其中$a_{n,k}:=\frac{\left(t_n-t_{k-1}\right)^{1-\alpha}-\left(t_n-t_{k}\right)^{1-\alpha}}{t_k-t_{k-1}},\,k=1,2,\dots,n,a_{n,0}:=0$.
+
+\begin{equation*}
+    \left<u,f(t,u,v)\right>\leqslant a-a_u \|u\|^2+a_v \|v\|^2, a>0, a_u>a_v>0.
+\end{equation*}
+
+\begin{theorem}
+    \begin{equation}\label{耗散性结果}
+        \|x^n\|^2\leqslant \left(a_u-a_v\right)^{-1}a+\|x_0\|^2.
+    \end{equation}
+\end{theorem}
+\begin{proof}
+    式\eqref{L1格式}两边与$x^n$作内积并结合Cauchy不等式得到
+    \begin{equation}\label{耗散性-内积放缩}
+        \begin{aligned}
+            \|x^n\|^2&\leqslant \left(t_n-t_{n-1}\right)^\alpha \Bigl( \Gamma(2-\alpha) \left(a-a_u \|x^n\|^2 + a_v \|\overline x^n\|^2\right)
+            \\ &\relphantom{\leqslant} + \sum_{k=0}^{n-1} \left(a_{n,k+1}-a_{n,k}\right) \frac{\|x^k\|^2+\|x^n\|^2}{2}\Bigr).
+        \end{aligned}
+    \end{equation}
+    注意到$\sum_{k=0}^{n-1} \left(a_{n,k+1}-a_{n,k}\right)=a_{n,n}=\left(t_n-t_{n-1}\right)^{-\alpha}$, 有
+    \begin{equation}\label{耗散性-求和}
+        \left(t_n-t_{n-1}\right)^\alpha \sum_{k=0}^{n-1} \left(a_{n,k+1}-a_{n,k}\right) \frac{\|x^k\|^2+\|x^n\|^2}{2}\leqslant\frac{1}{2}\Bigl(\max_{0\leqslant k<n} \|x^k\|^2 + \|x^n\|^2\Bigr).
+    \end{equation}
+    % \begin{equation}\label{耗散性-求和}
+    %     \sum_{k=0}^{n-1} \left(a_{n,k+1}-a_{n,k}\right) \frac{\|x^k\|^2+\|x^n\|^2}{2}\leqslant\max_{0\leqslant k\leqslant n} \|x^k\|^2.
+    % \end{equation}
+    将\eqref{耗散性-求和}代入\cref{耗散性-内积放缩}得到
+    \begin{align*}
+        \|x^n\|^2 &\leqslant a_n \left(a-a_u \|x^n\|^2 + a_v \|\overline x^n\|^2\right) + \max_{0\leqslant k<n} \|x^k\|^2
+        \\ &\leqslant a_n \Bigl(a-a_u \|x^n\|^2 + a_v \max_{0\leqslant k\leqslant n} \|x^k\|^2\Bigr) + \max_{0\leqslant k<n} \|x^k\|^2,
+    \end{align*}
+    其中$a_n:=2\left(t_n-t_{n-1}\right)^\alpha \Gamma(2-\alpha)$. 如果$\|x^n\|=\max_{0\leqslant k\leqslant n}$, 那么
+    \begin{equation}
+        \|x^n\|^2 \leqslant a_n \left(a-a_u \|x^n\|^2 + a_v \|x^n\|^2\right) + \|x^n\|^2,
+    \end{equation}
+    否则
+    \begin{equation}
+        \|x^n\|^2 \leqslant a_n \Bigl(a-a_u \|x^n\|^2 + a_v \max_{0\leqslant k< n} \|x^k\|^2\Bigr) + \max_{0\leqslant k< n} \|x^k\|^2,
+    \end{equation}    
+    两种情形分别导致
+    \begin{equation*}
+        \|x^n\|^2 \leqslant \frac{a}{a_u-a_v} \quad \text{and} \quad \|x^n\|^2 \leqslant \frac{a_na+\left(a_na_v+1\right)\max_{0\leqslant k<n}\|x^k\|^2}{1+a_na_u},
+    \end{equation*}
+    因此，无论如何总有
+    \begin{equation*}
+        \|x^n\|^2\leqslant \max\Bigl(\frac{a}{a_u-a_v}, \frac{a_na+\left(a_na_v+1\right)\max_{0\leqslant k<n}\|x^k\|^2}{1+a_na_u}\Bigr).
+    \end{equation*}
+    现在归纳地证明式\eqref{耗散性结果}。$n=0$时平凡。假定$0\leqslant n<N$时成立，然后有
+    \begin{align*}
+        \|x^N\|^2 &\leqslant \max\Bigl(\frac{a}{a_u-a_v}, \frac{a_Na+\left(a_Na_v+1\right)\bigl(\frac{a}{a_u-a_v}+\|x_0\|^2\bigr)}{1+a_Na_u}\Bigr)
+        \\ &= \max\Bigl(\frac{a}{a_u-a_v}, \frac{a}{a_u-a_v}+\frac{1+a_Na_v}{1+a_Na_u}\|x_0\|^2\Bigr)
+        \\ &\leqslant \left(a_u-a_v\right)^{-1}a+\|x_0\|^2.
+    \end{align*}
+    这就完成了证明。
+\end{proof}
+
+\subsection{Stability}
+In this subsection, we discuss the stability of the L1 shame. Here we replace the initial value of \cref{方程} by $x(0)=y^0$, and study how the numerical solution 
+\begin{equation*}
+    \left\{
+        \begin{aligned}
+            &\left<u-x,f(t,u,v)-f(t,x,v)\right>\leqslant -b_u \|u-x\|^2,\,b_u>0
+            \\ &\|f(t,u,v)-f(t,u,y)\|\leqslant b_v \|v-y\|,\,b_v>0
+        \end{aligned}
+    \right.
+\end{equation*}
+\begin{theorem}
+    \begin{equation*}
+        \|e^n\|\leqslant \|e^0\|.
+    \end{equation*}
+\end{theorem}
+\begin{proof}
+    写出$\left(e^n\right)_{n=0}^\infty$满足的等式，
+    \begin{align*}
+        e^n&=\left(t_n-t_{n-1}\right)^\alpha\Bigl(\sum_{k=0}^{n-1}\left(a_{n,k+1}-a_{n,k}\right)e^k
+        \\& \relphantom{=}+\Gamma(2-\alpha)\left(f\left(t_n,y^n,\overline y^n\right)-f\left(t_n,x^n,\overline x^n\right)\right)\Bigr).
+    \end{align*}
+    上式两边同$e^n$取内积，得
+    \begin{align*}
+        \|e^n\|^2&\leqslant\left(t_n-t_{n-1}\right)^\alpha\Bigl(\sum_{k=0}^{n-1}\left(a_{n,k+1}-a_{n,k}\right)\frac{\|e^k\|^2+\|e^n\|^2}{2} +\Gamma(2-\alpha)
+        \\& \relphantom{=}\left(\left\|f\left(t_n,y^n,\overline y^n\right)-f\left(t_n,x^n,\overline y^n\right)\right\|+\left\|f\left(t_n,x^n,\overline y^n\right)-f\left(t_n,x^n,\overline x^n\right)\right\|\right)\Bigr)
+        \\&\leqslant 2^{-1}\Bigl(\max_{0\leqslant k<n} \|e^k\|^2 + \|e^n\|^2\Bigr) %\left(t_n-t_{n-1}\right)^\alpha\sum_{k=0}^{n-1}\left(a_{n,k+1}-a_{n,k}\right)\frac{\|e^k\|^2+\|e^n\|^2}{2}
+        +2^{-1}a_n\left(-b_u \|e^n\|^2+b_v \|\overline e^n\|^2\right),
+    \end{align*}
+    其中$a_n:=2\left(t_n-t_{n-1}\right)^\alpha\Gamma(2-\alpha)$. 注意到$\|\overline e^n\|\leqslant \max_{0\leqslant k\leqslant n} \|e^k\|$, 我们有
+    \begin{equation*}
+        \|e^n\|^2\leqslant \max_{0\leqslant k<n} \|e^k\|^2+a_n\Bigl(-b_u \|e^n\|^2+b_v \max_{0\leqslant k\leqslant n} \|e^k\|^2\Bigr).
+    \end{equation*}
+    一种情况是$\|e^n\|=\max_{0\leqslant k\leqslant n} \|e^k\|$, 此时
+    \begin{align*}
+        \max_{0\leqslant k<n} \|e^k\|^2 &\geqslant \|e^n\|^2 \left(1+a_n\left(b_u-b_v\right)\right)\geqslant \|e^n\|^2
+        \\ &=\max_{0\leqslant k\leqslant n} \|e^k\|^2\geqslant \max_{0\leqslant k<n} \|e^k\|^2,
+    \end{align*}
+    而上式最左端和最右端一样，因此其中的不等号全取等，特别地，$\|e^0\|=\max_{0\leqslant k<n} \|e^k\|$. 另一种情况是$\|e^n\|<\max_{0\leqslant k\leqslant n} \|e^k\|$, 此时显然有$\|e^n\|<\max_{0\leqslant k< n} \|e^k\|$. 总之，
+    \begin{equation*}
+        \|e^n\|\leqslant\max_{0\leqslant k< n} \|e^k\|,\,n\in\positiveinteger.
+    \end{equation*}
+    最后归纳即得结论。
+\end{proof}
