@@ -17,7 +17,7 @@
 %     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\documentclass[fontset=fandol,toc=true,newtxmath=false]{hithesisart}
+\documentclass[fontset=fandol,toc=true,newtxmath=true]{hithesisart}
 % 此处选项中不要有空格
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % fontset=windows|mac|ubuntu|fandol
@@ -30,15 +30,44 @@
 %   含义：是否在封面后增加一个空白页用于打印，默认false
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \usepackage[sort&compress, capitalise]{cleveref}
+\crefname{theorem}{定理}{定理}
+\crefname{equation}{式}{式}
+\newcommand\crefpairconjunction{和}
+\newcommand\crefrangeconjunction{-}
+
 \usepackage{mathtools}
+% \renewenvironment{proof}[1][\proofname]{\par
+%     \pushQED{\qed}%
+%     \normalfont \topsep6\p@\@plus6\p@\relax
+%     \trivlist
+%     \item[\hskip\labelsep
+%         \itshape
+%       #1\@addpunct{.}]\ignorespaces 
+% }{%
+%     \popQED\endtrivlist\@endpefalse
+% }
+\makeatletter
+\theoremsymbol{$\square$}
+\newtheoremstyle{MyNonumberplain}%
+  {\item[\theorem@headerfont\hskip\labelsep ##1\theorem@separator]}%
+  {\item[\theorem@headerfont\hskip\labelsep ##3\theorem@separator]}
+\theoremstyle{MyNonumberplain}
+\renewtheorem{proof}{}
+\makeatother
+
+\allowdisplaybreaks
+
 \newcommand{\RiemannLiouvilleIntegral}{I^\alpha_{0^+}}
 \newcommand{\Caputo}{{^C}{D}^\alpha_{0^+}}
 \newcommand{\naturalset}{\mathbb{N}}
 \newcommand{\complexset}{\mathbb{C}}
 \newcommand{\positiveinteger}{\mathbb{N_+}}
 \newcommand{\Beta}{\mathrm{B}}
+
 \graphicspath{{figures/}}
+
 \begin{document}
+
 \hitsetup{
   ctitlecover={分数阶比例延迟方程的几种数值方法的研究},
   cstudent={李云鹏},
@@ -47,7 +76,7 @@
   cdate={2024年6月28日},
 }
 \makecover
-
+% \proofname
 \section{课题主要研究内容及进度情况}
 \input{body/progress.tex}
 
@@ -66,6 +95,7 @@
 \section*{参考文献}
 \bibliographystyle{hithesis}
 \bibliography{reference}
+
 \end{document}
 
 % Local Variables:
