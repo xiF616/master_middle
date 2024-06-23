@@ -23,7 +23,7 @@
     \begin{equation*}
         \left\|x^m(t)\right\|\leqslant \frac{t^m_n-t}{t^m_n-t^m_{n-1}}\left\|x^m_{n-1}\right\|+\frac{t-t^m_{n-1}}{t^m_n-t^m_{n-1}}\left\|x^m_{n}\right\|\leqslant 2\|x_0\|.
     \end{equation*}
-    因此对每个$t\in [0,h]$都有$\left(x^m(t)\right)_{m=1}^\infty$在$\realset^d$中相对紧.
+    因此对每个$t\in [0,h]$都有$\left(x^m(t)\right)_{m=1}^\infty$在$\realset^d$中相对紧。
 
     然后讨论连续函数列$\left(x^m\right)_{m=1}^\infty$的等度连续性。首先，对于$0\leqslant k\leqslant n\leqslant m$, 有
     \begin{align*}
@@ -34,8 +34,8 @@
     \end{align*}
     而至于$0\leqslant s\leqslant t\leqslant h$, 不妨设$s\in\left[t^m_{k-1},t^m_k\right],t\in\left[t^m_{n-1},t^m_n\right]$. 如果$k<n$, 那么
     \begin{align*}
-        &\relphantom{\leqslant}\left\| x^m(t)-x^m(s) \right\|
-        \\ &\leqslant \left\| x^m(t)-x^m(t_{n-1}) \right\|+\left\| x^m_{n-1}-x^m_k \right\|+\left\| x^m(t_k)-x^m(s) \right\|
+        \left\| x^m(t)-x^m(s) \right\|
+        &\leqslant \left\| x^m(t)-x^m(t_{n-1}) \right\|+\left\| x^m_{n-1}-x^m_k \right\|+\left\| x^m(t_k)-x^m(s) \right\|
         \\ &\leqslant \left\|x^m_{n}-x^m_{n-1}\right\|+\left\| x^m_{n-1}-x^m_k \right\|+\left\|x^m_{k}-x^m_{k-1}\right\|
         \\ &\leqslant 2M\Gamma(\alpha+1)^{-1}\left(\left(t^m_n-t^m_{n-1}\right)^\alpha + \left( t^m_{n-1}-t^m_{k}\right)^\alpha + \left(t^m_k-t^m_{k-1}\right)^\alpha\right)
         \\ &\leqslant 2M\Gamma(\alpha+1)^{-1}\left(2(h/m)^\alpha+(t-s)^\alpha\right),
@@ -50,7 +50,7 @@
     \begin{equation}\label{xmts}
         \left\| x^m(t)-x^m(s) \right\| \leqslant 2M\Gamma(\alpha+1)^{-1}\left(2(h/m)^\alpha+(t-s)^\alpha\right).
     \end{equation}
-    任给$\varepsilon>0$, 取$N=N(\varepsilon)\in \positiveinteger$和$\delta_0=\delta_0(\varepsilon)>0$分别满足$2M\Gamma(\alpha+1)^{-1}\delta_0^\alpha < \varepsilon/2$和$4M\Gamma(\alpha+1)^{-1}(h/N)^\alpha<\varepsilon/2$. 由式\eqref{xmts}可知，$\left\| x^m(t)-x^m(s) \right\| < \varepsilon$对任何$m>N$及$(s,t)\in D(\delta_0)$成立。至于$1\leqslant m\leqslant N$, 由于每个$x^m$都是$[0,h]$上的一致连续函数，故存在有限个只依赖于$\varepsilon$的正数$\left(\delta_m\right)_{m=1}^N$, 使得对于$(s,t)\in D(\delta_m)$成立$\left\| x^m(t)-x^m(s) \right\| < \varepsilon$. 现在取$\delta=\delta(\varepsilon):=\min_{0\leqslant m\leqslant N} \delta_m>0$, 那么当$0\leqslant s\leqslant t \leqslant h$且$t-s<\delta$时，$\left\| x^m(t)-x^m(s) \right\| < \varepsilon$对于任何$m\in \positiveinteger$成立。这说明$\left(x^m\right)_{m=1}^\infty$是$C[0,h]$中的一致等度连续函数列。
+    任给$\varepsilon>0$, 取$N=N(\varepsilon)\in \positiveinteger$和$\delta_0=\delta_0(\varepsilon)>0$分别满足$2M\Gamma(\alpha+1)^{-1}\delta_0^\alpha < \varepsilon/2$和$4M\Gamma(\alpha+1)^{-1}(h/N)^\alpha<\varepsilon/2$. 由\cref{xmts}可知，$\left\| x^m(t)-x^m(s) \right\| < \varepsilon$对任何$m>N$及$(s,t)\in D(\delta_0)$成立。至于$1\leqslant m\leqslant N$, 由于每个$x^m$都是$[0,h]$上的一致连续函数，故存在有限个只依赖于$\varepsilon$的正数$\left(\delta_m\right)_{m=1}^N$, 使得对于$(s,t)\in D(\delta_m)$成立$\left\| x^m(t)-x^m(s) \right\| < \varepsilon$. 现在取$\delta=\delta(\varepsilon):=\min_{0\leqslant m\leqslant N} \delta_m>0$, 那么当$0\leqslant s\leqslant t \leqslant h$且$t-s<\delta$时，$\left\| x^m(t)-x^m(s) \right\| < \varepsilon$对于任何$m\in \positiveinteger$成立。这说明$\left(x^m\right)_{m=1}^\infty$是$C[0,h]$中的一致等度连续函数列。
 
     使用Arzel\`a-Ascoli定理，我们得到$\left\{x^m\colon m\in \positiveinteger\right\}$在$C\left([0,h],\realset^d\right)$中相对紧，故有一致收敛子列，这个子列仍记为$\left(x^m\right)_{m=1}^\infty$, 并设其极限函数为$x\in C\left([0,h],\realset^d\right)$. 任给$\varepsilon>0$, 由于$f$在紧集$[0,h]\times \overline{B_{2\|x_0\|}(0)}\times \overline{B_{2\|x_0\|}(0)}\subset [0,h]\times \realset^d\times \realset^d$上一致连续，故存在$\delta_1=\delta_1(\varepsilon)>0$使得$\|f(t,u,v)-f(t,x,y)\|<\varepsilon \alpha \Gamma(\alpha) h^{-\alpha} / 4$对$t\in [0,h]$以及满足$\|u-x\|+\|v-y\|<\delta_1$的$u,v,x,y\in B_{2\|x_0\|}(0)$成立。取$N_1=N_1(\delta_1)\in \positiveinteger$, 使得当$m>N_1$且$t\in [0,h]$时成立$\left\|x^m(t)-x(t)\right\|<\delta_1/2$, 从而
     \begin{equation}\label{xmx}
@@ -75,15 +75,15 @@
         \left\|x^m(t)-x^m(t_n)\right\|<\varepsilon/4.
     \end{equation}
 
-    根据文献\inlinecite{Webb}中的性质3.2, $x,f\in C([0,h],\realset^d)$蕴涵$t\mapsto \Gamma(\alpha)^{-1}\int_{0}^{t}(t-s)^{\alpha-1}f(s,x(s),x(qs))\differential s\in C([0,h],\realset^d)$, 因此可取$N_3=N_3(\varepsilon)\in \positiveinteger$充分大（从而$h/N_3>0$足够小），使得$m>N_3$且$(s,t)\in D(h/N_3)$时，$\Gamma(\alpha)^{-1}\allowbreak\left\|\int_{0}^{t}(t-\tau)^{\alpha-1}f(\tau,x(\tau),x(q\tau))\differential \tau\right.\allowbreak-\left.\int_{0}^{s}(s-\tau)^{\alpha-1}f(\tau,x(\tau),x(q\tau))\differential \tau\right\|\allowbreak <\varepsilon/4$. 于是当$t\in [0,h]$时，设$t\in\left[t_{n-1},t_n\right]$, 有
+    根据文献\inlinecite{Webb}中的性质3.2, $x$和$f\in C([0,h],\realset^d)$蕴涵$t\mapsto \Gamma(\alpha)^{-1}\int_{0}^{t}(t-s)^{\alpha-1}f(s,x(s),x(qs))\differential s\in C([0,h],\realset^d)$, 因此可取$N_3=N_3(\varepsilon)\in \positiveinteger$充分大（从而$h/N_3>0$足够小），使得$m>N_3$且$(s,t)\in D(h/N_3)$时，$\Gamma(\alpha)^{-1}\allowbreak\left\|\int_{0}^{t}(t-\tau)^{\alpha-1}f(\tau,x(\tau),x(q\tau))\differential \tau\right.\allowbreak-\left.\int_{0}^{s}(s-\tau)^{\alpha-1}f(\tau,x(\tau),x(q\tau))\differential \tau\right\|\allowbreak <\varepsilon/4$. 于是当$t\in [0,h]$时，设$t\in\left[t_{n-1},t_n\right]$, 有
     \begin{equation}\label{xtnt}
-        \begin{multlined}
-            \Gamma(\alpha)^{-1}\left\|\int_{0}^{t_n}(t_n-s)^{\alpha-1}f(s,x(s),x(qs))\differential s\right.
-            \\-\left.\int_{0}^{t}(t-s)^{\alpha-1}f(s,x(s),x(qs))\differential s\right\|<\varepsilon/4.
-        \end{multlined}
+        \begin{aligned}
+            \Gamma(\alpha)^{-1}&\left\|\int_{0}^{t_n}(t_n-s)^{\alpha-1}f(s,x(s),x(qs))\differential s\right.
+            \\&\phantom{\left\|\vphantom{\int_{0}^{t_n}}\right.}-\left.\int_{0}^{t}(t-s)^{\alpha-1}f(s,x(s),x(qs))\differential s\right\|<\varepsilon/4.
+        \end{aligned}
     \end{equation}
     
-    现在取$N=N(\varepsilon):=\max \left\{N_1,N_2,N_3\right\}$, 根据\cref{xmx,tn,xmtnt,xtnt}以及三角不等式，当$m>N,t\in [0,h]$时，设$t\in \left[t_{n-1},t_n\right]$, 那么可以估计
+    现在取$N=N(\varepsilon):=\max (N_1,N_2,N_3)$, 根据\cref{xmx,tn,xmtnt,xtnt}以及三角不等式，当$m>N,t\in [0,h]$时，设$t\in \left[t_{n-1},t_n\right]$, 那么可以估计
     \begin{align*}
         &\relphantom{\leqslant}\left\|x^m(t)-x_0-\Gamma(\alpha)^{-1}\int_{0}^{t}(t-s)^{\alpha-1}f(s,x(s),x(qs))\differential s\right\|
         \\ &\leqslant \left\|x^m(t)-x^m(t_n)\right\|
@@ -98,7 +98,7 @@
     \begin{equation*}
         x(t)=\Gamma(\alpha)^{-1}\int_{0}^{t}(t-s)^{\alpha-1}f(s,x(s),x(qs))\differential s,\,0\leqslant t\leqslant h,
     \end{equation*}
-    从而$x\in C([0,h],\realset^d)$是方程\eqref{方程}在$[0,h]$上的一个弱解。
+    从而$x\in C([0,h],\realset^d)$是\mainEquation 在$[0,h]$上的一个弱解。
 \end{proof}
 
 \begin{proof}[\cref{Picard}的证明]
@@ -110,7 +110,7 @@
         \end{aligned}\right.
     \end{equation*}
     记$M<\infty$是集合$\left\{\left\|f(t,u,v)\right\|\colon t\in [0,1], u,v\in B_{2\|x_0\|}(0)\right\}$的一个上界，并取$0<h\leqslant 1$充分小，使得$\Gamma(\alpha + 1)^{-1} h^\alpha M \leqslant \|x_0\|$. 可以归纳地证明$\left\|x_{n}(t)\right\|\leqslant 2\|x_0\|,\;t\in [0,h],n\in \naturalset$. 取$L:=L(2\|x_0\|)$, 那么对于$t\in [0,h],n\in \positiveinteger$,
-    \begin{equation}
+    \begin{equation}\label{Picard估计递归}
         \begin{aligned}
             \left\| x_{n+1}(t)-x_n(t) \right\|&\leqslant L\Gamma(\alpha)^{-1}\int_0^t (t-s)^{\alpha-1} \\ &\relphantom{\leqslant}\bigl(\left\|x_n(s)-x_{n-1}(s)\right\| + \left\|x_n(qs)-x_{n-1}(qs)\right\|\bigr) \differential s.
         \end{aligned}
@@ -127,7 +127,7 @@
         &\leqslant \Gamma(\alpha)^{-1}\int_0^t (t-s)^{\alpha-1} M\differential s\\
         &=\Gamma(\alpha)^{-1} \alpha^{-1} t^\alpha M.
     \end{align*}
-    假定式\eqref{Picard逐次估计}在$n$取$n-1$时成立，然后
+    假定\cref{Picard逐次估计}在$n$取$n-1$时成立，然后
     \begin{align*}
         &\mathrel{\phantom{\leqslant}} \left\| x_{n+1}(t)-x_n(t) \right\| \\ &\leqslant \frac{L}{\Gamma(\alpha)}\int_0^t (t-s)^{\alpha-1} \bigl(\left\|x_n(s)-x_{n-1}(s)\right\| + \left\|x_n(qs)-x_{n-1}(qs)\right\|\bigr) \differential s\\
         &\leqslant \frac{L^{n} M}{\Gamma(\alpha)^{n+1} \alpha} \Bigl(\prod_{k=1}^{n-1}\left(1+q^{k\alpha}\right) \Beta(\alpha, k\alpha+1)\Bigr)\int_0^t (t-s)^{\alpha-1} \bigl(s^{n\alpha} + (qs)^{n\alpha}\bigr) \differential s\\
@@ -135,7 +135,7 @@
         &=\frac{L^{n} M}{\Gamma(\alpha)^{n+1} \alpha} \Bigl(\prod_{k=1}^{n-1}\left(1+q^{k\alpha}\right) \Beta(\alpha, k\alpha+1)\Bigr) \left(1+q^{n\alpha}\right) t^{n\alpha+\alpha}\Beta(\alpha, n\alpha+1)\\
         &=\frac{L^n M}{\Gamma(\alpha)^{n+1} \alpha} t^{(n+1)\alpha} \prod_{k=1}^n \left(1+q^{k\alpha}\right) \Beta(\alpha, k\alpha+1).
     \end{align*}
-    由归纳原理，式\eqref{Picard逐次估计}成立。注意到
+    由归纳原理，\cref{Picard逐次估计}成立。注意到
     \begin{equation*}
         \prod_{k=1}^n \left(1+q^{k\alpha}\right)\leqslant \prod_{k=1}^n \exp\left(q^{k\alpha}\right)=\exp \sum_{k=1}^n \left(q^\alpha\right)^k\leqslant \exp \frac{q^\alpha}{1-q^\alpha}
     \end{equation*}
@@ -147,7 +147,8 @@
     \begin{equation}
         \left\| x_{n+1}(t) - x_n(t) \right\|\leqslant \frac{L^n M t^{(n+1)\alpha}}{\Gamma((n+1)\alpha+1)} \exp \frac{q^\alpha}{1-q^\alpha},\,t\in [0,h].
     \end{equation}
-    由Cauchy-Hadamard公式和Stirling公式易知Mittag-Leffler函数$E_\alpha(z)=\sum_{n=0}^{\infty}\Gamma(\alpha n+1)^{-1}z^n$对于任何$z\in \complexset$收敛，然后根据Weierstrass M判别法就得到函数项级数$\sum_{n=0}^\infty \left(x_{n+1}-x_n\right)$在$[0,h]$上绝对一致收敛，于是函数列$\left(x_n\right)_{n=0}^\infty$在$[0,h]$上存在一致极限$x$. 这说明任取$\varepsilon>0$, 存在$N=N(\varepsilon)\in \naturalset$, 使得$\left\|x_n(t)-x(t)\right\|<\varepsilon$对于$n>N$和$t\in [0,h]$成立。这样一来，当$t\in [0,h]$时，
+
+    由Cauchy-Hadamard公式和Stirling公式易知Mittag-Leffler函数\cite{book}$E_\alpha(z)=\sum_{n=0}^{\infty}\Gamma(\alpha n+1)^{-1}z^n$对于任何$z\in \complexset$收敛，然后根据Weierstrass M判别法就得到函数项级数$\sum_{n=0}^\infty \left(x_{n+1}-x_n\right)$在$[0,h]$上绝对一致收敛，于是函数列$\left(x_n\right)_{n=0}^\infty$在$[0,h]$上存在一致极限$x$. 这说明任取$\varepsilon>0$, 存在$N=N(\varepsilon)\in \naturalset$, 使得$\left\|x_n(t)-x(t)\right\|<\varepsilon$对于$n>N$和$t\in [0,h]$成立。这样一来，当$t\in [0,h]$时，
     \begin{align*}
         &\relphantom{\leqslant} \left\| \int_0^t (t-s)^{\alpha-1} f(s,x_n(s),x_n(qs))\differential s - \int_0^t (t-s)^{\alpha-1} f(s,x(s),x(qs))\differential s \right\|\\
         &\leqslant \int_0^t (t-s)^{\alpha-1} L\cdot\left(\left\|x_n(s)-x(s)\right\|+\left\|x_n(qs)-x(qs)\right\|\right) \differential s\\
@@ -157,14 +158,15 @@
     \begin{equation*}
         \lim_{n\to\infty} \int_0^t (t-s)^{\alpha-1} f(s,x_n(s),x_n(qs))\differential s = \int_0^t (t-s)^{\alpha-1} f(s,x(s),x(qs))\differential s.
     \end{equation*}
-    现在在式\eqref{PicardSequence}中命$n\to\infty$就得到
+    现在在\cref{PicardSequence}中命$n\to\infty$就得到
     \begin{equation*}
         x(t)=x_0 + \Gamma(\alpha)^{-1}\int_0^t (t-s)^{\alpha-1} f(s,x(s),x(qs))\differential s,\;0\leqslant t\leqslant h.
     \end{equation*}
+    利用文献\inlinecite{Webb}中的性质3.2, 容易归纳地得到$\left(x_n\right)_{n=0}^\infty \subseteq C^{0,\alpha} \cap AC [0,h] \subseteq C[0,h]$, 于是其一致极限$x\in C[0,h]$. 这样$x$就是\mainEquation 在$[0,h]$上的一个弱解。
 
-    另一方面，利用文献\inlinecite{Webb}中的性质3.2, 容易归纳地得到$\left(x_n\right)_{n=0}^\infty \subseteq C^{0,\alpha} \cap AC [0,h] \subseteq C[0,h]$, 于是其一致极限$x\in C[0,h]$. 这样$x$就是方程\eqref{方程}在$[0,h]$上的一个弱解。
+    如果$L$可以不依赖于$r$, 那么\cref{Picard估计递归}对于一切$t\in [0,\infty)$成立，由此可见\mainEquation 的弱解将在$[0,\infty)$上全局存在。
 
-    \textbf{（唯一性）} 设$0<T<\infty$, $x,y\in C[0,T]$都是方程\eqref{方程}的弱解。记$L:=L\left(\max\left(\max_{0\leqslant t\leqslant T}\|x(t)\|,\right.\right.\allowbreak\left.\left.\max_{0\leqslant t\leqslant T}\|y(t)\|\right)\right)$, 并作$S:=\{t\in [0,T]\colon x(t)\neq y(t)\},t_*:=\inf S$, 下证$t_*=\infty$. 反证，假设$0\leqslant t_*\leqslant T$, 分三种情况讨论。
+    \textbf{（唯一性）} 设$0<T<\infty$, $x$和$y\in C[0,T]$都是\mainEquation 的弱解。记$L:=L\left(\max\left(\max_{0\leqslant t\leqslant T}\|x(t)\|,\right.\right.\allowbreak\left.\left.\max_{0\leqslant t\leqslant T}\|y(t)\|\right)\right)$, 并作$S:=\{t\in [0,T]\colon x(t)\neq y(t)\},t_*:=\inf S$, 下证$t_*=\infty$. 反证，假设$0\leqslant t_*\leqslant T$, 分三种情况讨论。
     \begin{enumerate}
         \item 如果$t_*=T$, 那么在$[0,T)$上有$x=y$, 而$x,y$都是连续的，因此必在闭区间$[0,T]$上处处相等，此时$S=\varnothing,t_*=\infty$, 矛盾。
         \item 如果$0<t_*<T$, 那么在$[0,t_*)$上有$x=y$. 选取$\delta>0$充分小，使得$t_*+\delta\leqslant T$且$q\cdot (t_*+\delta)<t_*$, 然后就有$x(qt)=y(qt),\,0\leqslant t\leqslant t_*+\delta$. 当$t\in \left[0,t_*+\delta\right]$时，
@@ -172,7 +174,7 @@
             \left\| x(t) - y(t) \right\| &\leqslant {L}{\Gamma(\alpha)}^{-1} \int_0^t (t-s)^{\alpha-1} \bigl(\|x(s)-y(s)\|+\|x(qs)-y(qs)\|\bigr) \differential s\\
             &={L}{\Gamma(\alpha)}^{-1} \int_0^t (t-s)^{\alpha-1} \|x(s)-y(s)\| \differential s,
         \end{align*}
-        然后利用分数阶的Gronwall不等式\cite{mild}就得到在$\left[0,t_*+\delta\right]$上都有$x=y$, 故$t_*\geqslant t_*+\delta$, 而这是不可能的。
+        然后利用分数阶Gronwall不等式\cite{mild}就得到在$\left[0,t_*+\delta\right]$上都有$x=y$, 故$t_*\geqslant t_*+\delta$, 而这是不可能的。
         \item 如果$t_*=0$, 选取$\delta\in (0,T]$充分小，使得$2L\Gamma(\alpha+1)^{-1}\delta^\alpha<1$. 当$t\in[0,\delta]$时，
         \begin{align*}
             &\relphantom{\leqslant}\left\| x(t) - y(t) \right\| \\& \leqslant L\Gamma(\alpha)^{-1}\int_0^t (t-s)^{\alpha-1} \bigl(\|x(s)-y(s)\|+\|x(qs)-y(qs)\|\bigr) \differential s\\
@@ -185,11 +187,11 @@
         \end{equation*}
         结合$\delta$的选取知道只可能有$\max_{0\leqslant s\leqslant \delta}\|x(s)-y(s)\|=0$, 即等式$x=y$至少在$[0,\delta]$上成立, 故$t_*\geqslant \delta$, 矛盾.
     \end{enumerate}
-    综合以上各种情况知$t_*\notin [0,T]$，只可能是$t_*=\infty$, 此时必有$S=\varnothing$, 故而$x$和$y$在整个$[0,T]$上相等。而如若$x,y$是$[0,\infty)$上方程\eqref{方程}的弱解，上述结果则表明它们在任何有限区间$[0,T]$上相等，因而在$[0,\infty)$上相等。唯一性证毕。
+    综合以上各种情况知$t_*\notin [0,T]$，只可能是$t_*=\infty$, 此时必有$S=\varnothing$, 故而$x$和$y$在整个$[0,T]$上相等。而如若$x,y$是$[0,\infty)$上\mainEquation 的弱解，上述结果则表明它们在任何有限区间$[0,T]$上相等，因而在$[0,\infty)$上相等。唯一性证毕。
 \end{proof}
 
 \begin{proof}[\cref{dissipativity}的证明]
-    式\eqref{L1格式}两边与$x_n$作内积并结合Cauchy-Schwarz不等式得到
+    \cref{L1格式}两边与$x_n$作内积并结合Cauchy-Schwarz不等式得到
     \begin{equation}\label{耗散性-内积放缩}
         \begin{aligned}
             \|x_n\|^2&\leqslant \left(t_n-t_{n-1}\right)^\alpha \Bigl( \Gamma(2-\alpha) \left(a-a_u \|x_n\|^2 + a_v \|\overline x_n\|^2\right)
@@ -200,7 +202,7 @@
     \begin{equation}\label{耗散性-求和}
         \left(t_n-t_{n-1}\right)^\alpha \sum_{k=0}^{n-1} \left(a_{n,k+1}-a_{n,k}\right) \frac{\|x_k\|^2+\|x_n\|^2}{2}\leqslant\frac{1}{2}\Bigl(\max_{0\leqslant k<n} \|x_k\|^2 + \|x_n\|^2\Bigr).
     \end{equation}
-    将\eqref{耗散性-求和}代入式\eqref{耗散性-内积放缩}得到
+    将\eqref{耗散性-求和}代入\cref{耗散性-内积放缩}得到
     \begin{align*}
         \|x_n\|^2 &\leqslant a_n \left(a-a_u \|x_n\|^2 + a_v \|\overline x_n\|^2\right) + \max_{0\leqslant k<n} \|x_k\|^2
         \\ &\leqslant a_n \Bigl(a-a_u \|x_n\|^2 + a_v \max_{0\leqslant k\leqslant n} \|x_k\|^2\Bigr) + \max_{0\leqslant k<n} \|x_k\|^2,
@@ -221,7 +223,7 @@
     \begin{equation*}
         \|x_n\|^2\leqslant \max\Bigl(\frac{a}{a_u-a_v}, \frac{a_na+\left(a_na_v+1\right)\max_{0\leqslant k<n}\|x_k\|^2}{1+a_na_u}\Bigr).
     \end{equation*}
-    现在归纳地证明式\eqref{耗散性结果}。$n=0$时平凡。假定$0\leqslant n<N$时成立，然后有
+    现在归纳地证明\cref{耗散性结果}。$n=0$时平凡。假定$0\leqslant n<N$时成立，然后有
     \begin{align*}
         \|x_N\|^2 &\leqslant \max\Bigl(\frac{a}{a_u-a_v}, \frac{a_Na+\left(a_Na_v+1\right)\bigl(\frac{a}{a_u-a_v}+\|x_0\|^2\bigr)}{1+a_Na_u}\Bigr)
         \\ &= \max\Bigl(\frac{a}{a_u-a_v}, \frac{a}{a_u-a_v}+\frac{1+a_Na_v}{1+a_Na_u}\|x_0\|^2\Bigr)
