@@ -5,7 +5,7 @@
         x(0) = x_0,
     \end{cases}
 \end{equation}
-其中$x$是$\realset^d$值未知函数，$x_0\in \realset^d$给定，$0<\alpha<1$, 函数$f:[0,\infty)\times \realset^d\times \realset^d$连续，$\Caputo x(t)=\Gamma(1-\alpha)^{-1}\int_{0}^{t}(t-s)^{-\alpha}x'(s)\differential s$. 
+其中$x$是$\realset^d$值未知函数，$x_0\in \realset^d$给定，$0<\alpha<1$, 函数$f:[0,\infty)\times \realset^d\times \realset^d$连续，$\Caputo x(t)=\Gamma(1-\alpha)^{-1}\int_{0}^{t}(t-s)^{-\alpha}x'(s)\differential s$. 参考\cite{mild}, 我们给出对于\mainEquation 的弱解的定义。
 \begin{definition}
     如果有函数$x$, 使得$t$属于$[0,\infty)$的某个包含0的子区间$I$上时满足
 \begin{equation}\label{mild solution}
@@ -24,7 +24,7 @@
     \begin{equation}\label{Lipschitz}
         \| f(t,x,y) - f(t,u,v) \| \leqslant L\cdot (\|x-u\| + \|y-v\|)
     \end{equation}
-    对任何$t\in [0,\infty)$以及$x,y,u,v\in B_r(0)$成立，那么\mainEquation 在某个小区间$[0,h]$上存在弱解，并且弱解在存在区间上唯一。进一步地，如果$L$可以不依赖于$r$, 那么在$[0,\infty)$上全局存在唯一的弱解。
+    对任何$t\in [0,\infty)$以及$x,y,u,v\in B_r(0)$成立，那么\mainEquation 在某个小区间$[0,h]$上存在弱解，并且弱解在存在区间$I\ni 0$上唯一。进一步地，如果$L$可以不依赖于$r$, 那么在$[0,\infty)$上全局存在唯一的弱解。
 \end{theorem}
 
 在叙述数值解部分的结果之前，先给出数值格式。取严格递增趋于正无穷的序列$\left(t_n\right)_{n=0}^\infty$作为时间节点，其中$t_0=0$. 利用在每个小区间上线性插值的办法来近似导数和延迟，就得到针对\mainEquation 的L1数值格式

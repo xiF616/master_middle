@@ -951,7 +951,7 @@ FUNCTION {output.editor} {                        % void Entry::output_editor(in
 FUNCTION {output.title} {                         % void Entry::output_title(int required) {
   'required :=                                    %   this.required = required;
   title empty$ not {                              %   if (! empty(this.title)) {
-    title format.title write$                     %     write(format_title(this.title));
+    title "t" change.case$ format.title write$    %     write(format_title(this.title));
   } {                                             %   } else {
     required {                                    %     if (required == 1) {
       "Require title: " cite$ * warning$          %       warning("Require title: " + this.cite);
@@ -964,7 +964,7 @@ FUNCTION {output.title} {                         % void Entry::output_title(int
 FUNCTION {output.series.volume.title} {           % void Entry::output_series_volume_title(int required) {
   'required :=                                    %   this.required = required;
   title empty$ not {                              %   if (! empty(this.title)) {
-    get.full.title format.booktitle write$        %     write(format_booktitle(get_full_title()));
+    get.full.title "t" change.case$ format.booktitle write$        %     write(format_booktitle(get_full_title()));
   } {                                             %   } else {
     required {                                    %     if (required == 1) {
       "Require title: " cite$ * warning$          %       warning("Require title: " + this.cite);
@@ -977,7 +977,7 @@ FUNCTION {output.series.volume.title} {           % void Entry::output_series_vo
 FUNCTION {output.series.volume.booktitle} {       % void Entry::output_series_volume_booktitle(int required) {
   'required :=                                    %   this.required = required;
   booktitle empty$ not {                          %   if (! empty(this.booktitle)) {
-    get.full.booktitle format.booktitle write$    %     write(format_booktitle(get_full_booktitle());
+    get.full.booktitle "t" change.case$ format.booktitle write$    %     write(format_booktitle(get_full_booktitle());
   } {                                             %   } else {
     required {                                    %     if (required == 1) {
       "Require booktitle: " cite$ * warning$      %       warning("Require booktitle: " + this.cite);

@@ -17,7 +17,7 @@
 %     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\documentclass[fontset=fandol,toc=true,newtxmath=true]{hithesisart}
+\documentclass[fontset=fandol,toc=true,newtxmath=true,print=true]{hithesisart}
 % 此处选项中不要有空格
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % fontset=windows|mac|ubuntu|fandol
@@ -30,10 +30,14 @@
 %   含义：是否在封面后增加一个空白页用于打印，默认false
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \usepackage[sort&compress, capitalise]{cleveref}
+\let\oldcref\cref
+\renewcommand{\cref}[1]{\oldcref{#1}\,}
 \crefname{theorem}{定理}{定理}
 \crefname{equation}{式}{式}
-\newcommand\crefpairconjunction{和}
+\newcommand\crefpairconjunction{\,和\,}
 \newcommand\crefrangeconjunction{-}
+\let\oldeqref\eqref
+\renewcommand{\eqref}[1]{\,\oldeqref{#1}\,}
 \newcommand{\mainEquation}{方程\eqref{方程}}
 
 % \usepackage{mathtools}
@@ -94,6 +98,7 @@
 \input{body/probility.tex}
 
 \section*{参考文献}
+\addcontentsline{toc}{section}{参考文献}
 \bibliographystyle{hithesis}
 \bibliography{reference}
 

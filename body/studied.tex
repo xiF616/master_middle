@@ -129,7 +129,7 @@
     \end{align*}
     假定\cref{Picard逐次估计}在$n$取$n-1$时成立，然后
     \begin{align*}
-        &\mathrel{\phantom{\leqslant}} \left\| x_{n+1}(t)-x_n(t) \right\| \\ &\leqslant \frac{L}{\Gamma(\alpha)}\int_0^t (t-s)^{\alpha-1} \bigl(\left\|x_n(s)-x_{n-1}(s)\right\| + \left\|x_n(qs)-x_{n-1}(qs)\right\|\bigr) \differential s\\
+        &\relphantom{\leqslant} \left\| x_{n+1}(t)-x_n(t) \right\| \\ &\leqslant \frac{L}{\Gamma(\alpha)}\int_0^t (t-s)^{\alpha-1} \bigl(\left\|x_n(s)-x_{n-1}(s)\right\| + \left\|x_n(qs)-x_{n-1}(qs)\right\|\bigr) \differential s\\
         &\leqslant \frac{L^{n} M}{\Gamma(\alpha)^{n+1} \alpha} \Bigl(\prod_{k=1}^{n-1}\left(1+q^{k\alpha}\right) \Beta(\alpha, k\alpha+1)\Bigr)\int_0^t (t-s)^{\alpha-1} \bigl(s^{n\alpha} + (qs)^{n\alpha}\bigr) \differential s\\
         &=\frac{L^{n} M}{\Gamma(\alpha)^{n+1} \alpha} \Bigl(\prod_{k=1}^{n-1}\left(1+q^{k\alpha}\right) \Beta(\alpha, k\alpha+1)\Bigr) \left(1+q^{n\alpha}\right) \int_0^t (t-s)^{\alpha-1} s^{n\alpha} \differential s\\
         &=\frac{L^{n} M}{\Gamma(\alpha)^{n+1} \alpha} \Bigl(\prod_{k=1}^{n-1}\left(1+q^{k\alpha}\right) \Beta(\alpha, k\alpha+1)\Bigr) \left(1+q^{n\alpha}\right) t^{n\alpha+\alpha}\Beta(\alpha, n\alpha+1)\\
@@ -166,9 +166,9 @@
 
     如果$L$可以不依赖于$r$, 那么\cref{Picard估计递归}对于一切$t\in [0,\infty)$成立，由此可见\mainEquation 的弱解将在$[0,\infty)$上全局存在。
 
-    \textbf{（唯一性）} 设$0<T<\infty$, $x$和$y\in C[0,T]$都是\mainEquation 的弱解。记$L:=L\left(\max\left(\max_{0\leqslant t\leqslant T}\|x(t)\|,\right.\right.\allowbreak\left.\left.\max_{0\leqslant t\leqslant T}\|y(t)\|\right)\right)$, 并作$S:=\{t\in [0,T]\colon x(t)\neq y(t)\},t_*:=\inf S$, 下证$t_*=\infty$. 反证，假设$0\leqslant t_*\leqslant T$, 分三种情况讨论。
+    \textbf{（唯一性）} 设$0<T:=\sup I<\infty$, $x$和$y\in C[0,T]$都是\mainEquation 的弱解。记$L:=L\left(\max\left(\max_{0\leqslant t\leqslant T}\|x(t)\|,\right.\right.\allowbreak\left.\left.\max_{0\leqslant t\leqslant T}\|y(t)\|\right)\right)$, 并作$S:=\{t\in [0,T]\colon x(t)\neq y(t)\},t_*:=\inf S$, 下证$t_*=\infty$. 反证，假设$0\leqslant t_*\leqslant T$, 分三种情况讨论。
     \begin{enumerate}
-        \item 如果$t_*=T$, 那么在$[0,T)$上有$x=y$, 而$x,y$都是连续的，因此必在闭区间$[0,T]$上处处相等，此时$S=\varnothing,t_*=\infty$, 矛盾。
+        \item 如果$t_*=T$, 此时必有$T\in I$, 且在$[0,T)$上$x=y$, 而$x,y$都是连续的，因此必在闭区间$[0,T]$上处处相等，此时$S=\varnothing,t_*=\infty$, 矛盾。
         \item 如果$0<t_*<T$, 那么在$[0,t_*)$上有$x=y$. 选取$\delta>0$充分小，使得$t_*+\delta\leqslant T$且$q\cdot (t_*+\delta)<t_*$, 然后就有$x(qt)=y(qt),\,0\leqslant t\leqslant t_*+\delta$. 当$t\in \left[0,t_*+\delta\right]$时，
         \begin{align*}
             \left\| x(t) - y(t) \right\| &\leqslant {L}{\Gamma(\alpha)}^{-1} \int_0^t (t-s)^{\alpha-1} \bigl(\|x(s)-y(s)\|+\|x(qs)-y(qs)\|\bigr) \differential s\\

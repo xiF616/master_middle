@@ -359,6 +359,7 @@
   \setlength{\cftsubsubsecnumwidth}{0em}
 \ExplSyntaxOff
 
+% \RequirePackage{tocbibind}
 \def\makecover{
   \begin{titlepage}
     \hit@report@titlepage@graduate
