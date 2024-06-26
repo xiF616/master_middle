@@ -1,0 +1,157 @@
+\AddToHook{package/xeCJK/after}{\defaultCJKfontfeatures{}}
+% \PassOptionsToPackage{quiet}{xeCJK}
+
+\documentclass[aspectratio=16 9, 10pt, notheorems]{ctexbeamer}
+\usefonttheme{professionalfonts}
+\usepackage{setspace}
+% \usepackage[space, hyperref]{ctex}
+\usepackage{enumitem}
+
+\usepackage{amsthm, amsmath, amssymb}
+\newcommand{\differential}{\mathop{}\!\mathrm{d}}
+\newcommand{\relphantom}[1]{\mathrel{\phantom{#1}}\negmedspace {}}
+
+\setbeamertemplate{navigation symbols}{}
+
+\usepackage{xcolor}
+\definecolor{structurecolor}{RGB}{20,65,137}
+\setbeamercolor{structure}{fg=structurecolor}
+\setbeamercolor{titlelike}{fg=white}
+\setbeamercolor{informationlike}{}
+\setbeamertemplate{background canvas}{\includegraphics[page=3, height=\paperheight]{template.pdf}}
+\setbeamertemplate{title page}% 定义标题页模板
+{
+    % \vfill%竖直方向空白填充，和下面的\vifll结合使用可以使它们之间的内容竖直居中
+    \vskip2.3cm
+    \begin{beamercolorbox}[center]{titlelike}%内容居中对齐，边界拐角使用圆角
+        \usebeamerfont{title}\inserttitle\par%%插入标题内容，并对字体进行了设置
+        \ifx\insertsubtitle\@empty%%\ifx的作用是比较两个字符串是否相等，这里的作用是判断是否有子标题，如果没有，就什么也不做
+        \else%%有子标题
+        	\vskip0.25em%%竖直跳过一段距离
+        	{\usebeamerfont{subtitle}\usebeamercolor[fg]{subtitle}\insertsubtitle\par}%%插入子标题，并设置了所使用的字体和前景颜色
+        \fi%
+    \end{beamercolorbox}%
+    \vskip2cm\par%%竖直跳过一段距离
+    \begin{beamercolorbox}[center]{informationlike}%内容居中对齐
+        \usebeamerfont{author}\insertauthor\\
+        \vspace{.8em}
+        \usebeamerfont{institute}\insertinstitute\\
+        \vspace{.8em}
+        \usebeamerfont{date}\insertdate
+    \end{beamercolorbox}
+    % \vfill
+}
+\setbeamertemplate{frametitle}
+{
+    \begin{beamercolorbox}[wd=\paperwidth,ht=5ex,dp=1.125ex,left]{titlelike}
+        \hspace{2em}\usebeamerfont{frametitle}\insertframetitle
+    \end{beamercolorbox}
+}
+\setbeamertemplate{section in toc}[ball unnumbered]% 正方形标号square, 圆形标号circle
+\setbeamertemplate{subsection in toc}[square]% 正方形标号square
+% \setbeamertemplate{content}
+% {
+%     \begin{beamercolorbox}[wd=\paperwidth,ht=5.5ex,dp=1.125ex,left]{titlelike}
+%         \hspace{2em}\usebeamerfont{frametitle}\insertframetitle
+%     \end{beamercolorbox}
+% }
+% \setbeamerfont{section in toc}{size=\Huge}
+% \setbeamerfont{section in toc shaded}{size=\normalsize}
+% \usepackage{xpatch}
+% \makeatletter
+% \beamer@tocsectionnumber=-2147483647\relax
+% \xpatchcmd\beamer@sectionintoc
+%   {\ifnum\beamer@tempcount>0}
+%   {\ifnum\beamer@tempcount>-1}
+%   {}{\fail}
+% \makeatother
+\definecolor{tocshaded}{RGB}{166,166,166}
+\setbeamercolor{section in toc shaded}{fg=tocshaded}
+\setbeamercolor{subsection in toc shaded}{fg=tocshaded}
+\setbeamertemplate{section in toc shaded}[default][100]
+\setbeamertemplate{subsection in toc shaded}[default][100]
+\AtBeginSection[]
+{
+    {
+        \setbeamertemplate{background canvas}{\includegraphics[page=4, height=\paperheight]{template.pdf}}
+        \begin{frame}
+            % \transfade%淡入淡出
+            \tableofcontents[currentsection]
+            \vspace{5ex}
+        \end{frame}
+    }
+}
+
+% \theoremstyle{plain}
+% \renewcommand{thetheorem}{\arabic{section}.\arabic{theorem}}
+% \setbeamercolor{block}{fg=white}
+\setbeamertemplate{theorems}[numbered]
+% \setbeamercolor{block title}{bg=structure, fg=white}
+\setbeamercolor{block title}{bg=structure!30}
+\setbeamercolor{block body}{bg=structure!20}
+\newtheorem*{definition}{定义}
+\newtheorem{theorem}{定理}
+\newtheorem{lemma}{引理}
+\newtheorem*{property}{性质}
+
+% \newcounter{definition}%[section]
+% \renewcommand{\thedefinition}{\textbf{\arabic{definition}.}}
+% \newenvironment{definition}{\addtocounter{definition}{1}定义}{\\}
+
+% \newcounter{theorem}
+% \renewcommand{\thetheorem}{\textbf{\arabic{theorem}.}}
+% \newenvironment{theorem}{\addtocounter{theorem}{1}\\定理\thetheorem}{\\}
+
+% \newcounter{lemma}
+% \renewcommand{\thelemma}{\textbf{\arabic{lemma}.}}
+% \newenvironment{lemma}{\addtocounter{lemma}{1}引理\thelemma}{\\}
+
+% \newcounter{property}
+% \renewcommand{\theproperty}{\textbf{\arabic{property}.}}
+% \newenvironment{property}{\addtocounter{property}{1}\\性质\theproperty}{\\}
+
+\setbeamertemplate{frametitle continuation}{}
+\title{分数阶比例延迟方程的几种数值方法的研究}
+\author{李云鹏}
+\institute{导师：雷强}
+\date{2024年6月28日}
+\setbeamerfont{institute}{size=\fontsize{10}{0}}
+\setbeamertemplate{bibliography item}[text]
+
+\begin{document}
+{
+    \setbeamertemplate{background canvas}{\includegraphics[page=1, height=\paperheight]{template.pdf}}
+    \begin{frame}\titlepage\end{frame}
+}
+
+{
+% \titlecontents{section}[10em]{\bfseries \zihao{5} \vspace{10pt}}{\contentslabel{4em}}{\hspace*{-4em}}{~\titlerule*[0.6pc]{$.$}~\contentspage}
+    \setbeamertemplate{background canvas}{\includegraphics[page=2, height=\paperheight]{template.pdf}}
+    \begin{frame}
+        % \vfill
+        % \begin{beamercolorbox}[wd=\paperwidth,ht=7.5ex,dp=1.125ex,left]{}%
+        %     \hspace{10em}
+        %     \tableofcontents%
+        % \end{beamercolorbox}
+        \begin{columns}
+            \column{.4\textwidth}
+            \column{.6\textwidth}
+            % \titlespacing{\section}{\parindent}{2}{\wordsep}
+            \vfill
+            \begin{spacing}{1.4}
+                \tableofcontents[hideallsubsections]
+            \end{spacing}
+            \vfill
+        \end{columns}
+        % \vfill
+    \end{frame}
+}
+
+\section*{结束致谢}
+
+{
+    \setbeamertemplate{background canvas}{\includegraphics[page=5, height=\paperheight]{template.pdf}}
+    \begin{frame} \end{frame}
+}
+
+\end{document}
