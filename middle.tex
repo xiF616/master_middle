@@ -17,7 +17,7 @@
 %     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\documentclass[fontset=fandol,toc=true,newtxmath=true,print=true]{hithesisart}
+\documentclass[fontset=fandol,toc=true,newtxmath=true,print=false]{hithesisart}
 % 此处选项中不要有空格
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % fontset=windows|mac|ubuntu|fandol
@@ -31,13 +31,13 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \usepackage[sort&compress, capitalise]{cleveref}
 \let\oldcref\cref
-\renewcommand{\cref}[1]{\oldcref{#1}\,}
+\renewcommand{\cref}[1]{\oldcref{#1}~}
 \crefname{theorem}{定理}{定理}
 \crefname{equation}{式}{式}
-\newcommand\crefpairconjunction{\,和\,}
-\newcommand\crefrangeconjunction{-}
+\newcommand\crefpairconjunction{~和~}
+\newcommand\crefrangeconjunction{--}
 \let\oldeqref\eqref
-\renewcommand{\eqref}[1]{\,\oldeqref{#1}\,}
+\renewcommand{\eqref}[1]{~\oldeqref{#1}~}
 \newcommand{\mainEquation}{方程\eqref{方程}}
 
 % \usepackage{mathtools}

@@ -369,6 +369,7 @@
       % \begin{spacing}{1.2} \tableofcontents \end{spacing}
       \newpage
       \tableofcontents
+      \thispagestyle{empty}
       \clearpage
     \fi
   \end{titlepage}
