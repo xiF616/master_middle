@@ -38,7 +38,7 @@
 
 在数值解部分得到的结果为如下的\cref{dissipativity,Picard}, 其中所描述的数值解的长时间行为与文献\inlinecite{WangDongLing}中得到的准确解在相同条件下的长时间行为相吻合，同时也是对文献\inlinecite{LiDongFang}中结果的推广。接下来的\cref{dissipativity}说明，在一定条件下，数值解有界。
 \begin{theorem}\label{dissipativity}
-    如果存在常数$a>0,a_u>a_v>0$, 使得对任何$t\geq 0$和$u,v\in \realset^d$成立
+    如果存在常数$a>0,a_u>a_v>0$, 使得对任何$t\geqslant 0$和$u,v\in \realset^d$成立
     \begin{equation*}
         \left<u,f(t,u,v)\right>\leqslant a-a_u \|u\|^2+a_v \|v\|^2,
     \end{equation*}
@@ -49,7 +49,7 @@
 \end{theorem}
 接下来讨论数值解的稳定性。为此，把\mainEquation 的初值条件改为$x(0)=y_0$, 用同样的数值算法（包括步长）产生数值解$\left(y_n\right)_{n=0}^\infty$和对“延迟”的近似$\left(\overline y_n\right)_{n=0}^\infty$, 并记$e_n:=y_n-x_n, \overline e_n:=\overline y_n-\overline x_n$. 接下来的\cref{stability}表明，在一定条件下，数值解稳定。
 \begin{theorem}\label{stability}
-    如果存在常数$b_u>b_v>0$, 使得对任何$t\geq 0$和$u,v,x,y\in \realset^d$成立
+    如果存在常数$b_u>b_v>0$, 使得对任何$t\geqslant 0$和$u,v,x,y\in \realset^d$成立
     \begin{equation*}
         \left\{
             \begin{aligned}

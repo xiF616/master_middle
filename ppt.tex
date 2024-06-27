@@ -2,14 +2,34 @@
 % \PassOptionsToPackage{quiet}{xeCJK}
 
 \documentclass[aspectratio=16 9, 10pt, notheorems]{ctexbeamer}
+\usepackage[sort&compress, capitalise]{cleveref}
+\let\oldcref\cref
+\renewcommand{\cref}[1]{\oldcref{#1}~}
+\crefname{theorem}{定理}{定理}
+\crefname{equation}{式}{式}
+\newcommand\crefpairconjunction{~和~}
+\newcommand\crefrangeconjunction{--}
+\let\oldeqref\eqref
+\renewcommand{\eqref}[1]{~\oldeqref{#1}~}
+\newcommand{\mainEquation}{方程\eqref{方程}}
+
 \usefonttheme{professionalfonts}
 \usepackage{setspace}
 % \usepackage[space, hyperref]{ctex}
 \usepackage{enumitem}
+% \setbeamertemplate{itemize items}[circle]
 
 \usepackage{amsthm, amsmath, amssymb}
+\allowdisplaybreaks
 \newcommand{\differential}{\mathop{}\!\mathrm{d}}
 \newcommand{\relphantom}[1]{\mathrel{\phantom{#1}}\negmedspace {}}
+\newcommand{\realset}{\mathbb{R}}
+\newcommand{\RiemannLiouvilleIntegral}{I^\alpha_{0^+}}
+\newcommand{\Caputo}{{^C}{D}^\alpha_{0^+}}
+\newcommand{\naturalset}{\mathbb{N}}
+\newcommand{\complexset}{\mathbb{C}}
+\newcommand{\positiveinteger}{\mathbb{N_+}}
+\newcommand{\Beta}{\mathrm{B}}
 
 \setbeamertemplate{navigation symbols}{}
 
@@ -146,6 +166,216 @@
         % \vfill
     \end{frame}
 }
+
+\section{课题主要研究内容}
+\begin{frame}{课题主要研究内容}
+    设$d\in \positiveinteger$. 本课题主要研究如下的分数阶比例延迟方程，
+\begin{equation}\label{方程}
+    \begin{cases}%dcases
+        \Caputo x(t) = f(t, x(t), x(qt)),&t\geqslant 0,\\
+        x(0) = x_0,
+    \end{cases}
+\end{equation}
+其中$x$是$\realset^d$值未知函数，$x_0\in \realset^d$给定，$0<\alpha<1$, 函数$f:[0,\infty)\times \realset^d\times \realset^d\to\realset^d$连续，$\Caputo x(t)=\Gamma(1-\alpha)^{-1}\int_{0}^{t}(t-s)^{-\alpha}x'(s)\differential s$.
+
+\begin{definition}
+    如果有函数$x$, 使得$t$属于$[0,\infty)$的某个包含$0$的子区间$I$上时满足
+\begin{equation*}\label{mild solution}
+    x(t)=x_0+\Gamma(\alpha)^{-1}\int_{0}^{t} (t-s)^{\alpha-1} f(s,x(s),x(qs)) \differential s,
+\end{equation*}
+那么称$x$是\mainEquation 在$I$上的一个弱解。
+\end{definition}
+\end{frame}
+
+\section{目前已完成的研究工作及结果}
+\begin{frame}{弱解的存在性与唯一性}
+    \begin{theorem}[Peano存在性定理]
+        \mainEquation 总是在某个小区间$[0,h]$上存在弱解。
+    \end{theorem}
+    \begin{theorem}[Picard存在唯一性定理]
+        如果$f(t,\cdot,\cdot)$对$t\in [0,\infty)$一致地局部Lipschitz, 即对任何$r>0$, 存在不依赖于$t$的$L=L(r)\geqslant 0$, 使得
+        \begin{equation*}\label{Lipschitz}
+            \| f(t,x,y) - f(t,u,v) \| \leqslant L\cdot (\|x-u\| + \|y-v\|)
+        \end{equation*}
+        对任何$t\in [0,\infty)$以及$x,y,u,v\in B_r(0)$成立，那么\mainEquation 在某个小区间$[0,h]$上存在弱解，并且弱解在存在区间$I\ni 0$上唯一。进一步地，如果$L$可以不依赖于$r$, 那么在$[0,\infty)$上全局存在唯一的弱解。
+    \end{theorem}
+\end{frame}
+\begin{frame}{Peano存在性定理的证明概要}
+    取时间序列$t^m_{n}:=nh/m,\,n=0,1,2,\dots,m$, 并构造Euler折线$\left(x^m\right)_{m=1}^\infty\colon[0,h]\to \realset^d$如下。
+    \begin{equation*}
+        x^m_{n}=x_0+\Gamma(\alpha)^{-1}\sum_{k=1}^n\int_{t^m_{k-1}}^{t^m_k}\left(t^m_n-s\right)^{\alpha-1}f\bigl(s,x^m_{k-1},x^m_{q^m_{k-1}}\bigr)\differential s,\,n=1,2,\dots,m,
+    \end{equation*}
+    \begin{equation*}
+        x^m(t):=\frac{t^m_n-t}{t^m_n-t^m_{n-1}}x^m_{n-1}+\frac{t-t^m_{n-1}}{t^m_n-t^m_{n-1}}x^m_{n},\,t^m_{n-1}\leqslant t\leqslant t^m_n,
+    \end{equation*}
+    其中$h>0$取充分小, 使得Euler折线一致有界。
+\end{frame}
+\begin{frame}{Peano存在性定理的证明概要}
+    可以估计出
+    \begin{equation*}\label{xmts}
+        \left\| x^m(t)-x^m(s) \right\| \leqslant 2M\Gamma(\alpha+1)^{-1}\left(2(h/m)^\alpha+(t-s)^\alpha\right),
+    \end{equation*}
+    进而知道$\left(x^m\right)_{m=1}^\infty$等度连续。
+    \\~\\
+    使用Arzel\`a-Ascoli定理，$\left(x^m\right)_{m=1}^\infty$有一致收敛子列，仍记为$\left(x^m\right)_{m=1}^\infty$, 并设其极限函数为$x\in C\left([0,h],\realset^d\right)$.
+    \\~\\
+    接下来证明$x$是\mainEquation 在$[0,h]$上的一个弱解。
+\end{frame}
+\begin{frame}[allowframebreaks]{Peano存在性定理的证明概要}
+    借助三角不等式，对任何$t\in [0,h]$, 设$t\in\left[t^m_{n-1},t^m_n\right]$, 有
+    \begin{align*}
+        &\relphantom{\leqslant}\left\|x^m(t)-x_0-\Gamma(\alpha)^{-1}\int_{0}^{t}(t-s)^{\alpha-1}f(s,x(s),x(qs))\differential s\right\|
+        \\ &\leqslant \left\|x^m(t)-x^m(t^m_n)\right\|
+        \\ &\relphantom{\leqslant}+\left\|x^m(t^m_n)-x_0-\Gamma(\alpha)^{-1}\int_{0}^{t^m_n}(t^m_n-s)^{\alpha-1}f(s,x^m(s),x^m(qs))\differential s\right\|
+        \\ &\relphantom{\leqslant}+\Gamma(\alpha)^{-1}\left\|\int_{0}^{t^m_n}(t^m_n-s)^{\alpha-1}\left(f(s,x^m(s),x^m(qs))-f(s,x(s),x(qs))\right)\differential s\right\|
+        \\ &\relphantom{\leqslant}+\Gamma(\alpha)^{-1}\left\|\int_{0}^{t^m_n}(t^m_n-s)^{\alpha-1}f(s,x(s),x(qs))\differential s-\int_{0}^{t}(t-s)^{\alpha-1}f(s,x(s),x(qs))\differential s\right\|.
+    \end{align*}
+\end{frame}
+\begin{frame}{Peano存在性定理的证明概要}
+    可以证明，当$m$充分大时，不等号右边的每一项都可以任意小，从而
+    \begin{equation*}
+        x(t)=x_0+\Gamma(\alpha)^{-1}\int_{0}^{t}(t-s)^{\alpha-1}f(s,x(s),x(qs))\differential s,\,0\leqslant t\leqslant h.
+    \end{equation*}
+    从而$x\in C([0,h],\realset^d)$是\mainEquation 在$[0,h]$上的一个弱解。
+\end{frame}
+
+\begin{frame}{Picard存在性定理的证明概要}
+    构造Picard序列$\left(x_n\right)_{n=0}^\infty\colon [0,\infty)\to \realset^d$满足
+    \begin{equation*}\label{PicardSequence}
+        \left\{\begin{aligned}
+            x_{n+1}(t)&:=x_0 + \Gamma(\alpha)^{-1} \textstyle\int_0^t (t-s)^{\alpha-1} f(s,x_n(s),x_n(qs))\differential s, & n\in \naturalset,\\
+            x_0(t)&:=x_0. & {}
+        \end{aligned}\right.
+    \end{equation*}
+    取$h$充分小，使得$\left(x_n\right)_{n=0}^\infty$一致有界。（这是为了在证明过程中取固定的Lipschitz常数。如果$L$可以与$r$无关，那么就可以在整个$[0,\infty)$上运作下面的证明。）归纳知
+    \begin{equation*}
+        \left\| x_{n+1}(t) - x_n(t) \right\|\leqslant \frac{L^n M t^{(n+1)\alpha}}{\Gamma((n+1)\alpha+1)} \exp \frac{q^\alpha}{1-q^\alpha},\,t\in [0,h].
+    \end{equation*}
+    由Mittag-Leffler函数的性质知$\left(x_n\right)_{n=0}^\infty$在$[0,h]$上一致收敛，然后容易看出其极限函数即是\mainEquation 在$[0,h]$上的一个弱解。
+\end{frame}
+\begin{frame}[allowframebreaks]{Picard唯一性定理的证明概要}
+    先设$0<T:=\sup I<\infty$, $[0,T]$中的$\realset^d$值连续函数$x,y$都是\mainEquation 的弱解。记$L:=L\left(\max\left(\max_{0\leqslant t\leqslant T}\|x(t)\|,\right.\right.\allowbreak\left.\left.\max_{0\leqslant t\leqslant T}\|y(t)\|\right)\right)$, $S:=\{t\in \colon x(t)\neq y(t)\},t_*:=\inf S$, \\下证$t_*=\infty$. 反证，假设$0\leqslant t_*\leqslant T$.
+    \\~\\
+    \begin{itemize}%[ball unnumbered]
+        % \setbeamertemplate{itemize items}{$\bullet$}
+        \item[$\bullet$] 如果$t_*=T$, 那么$x(T)=y(T)$, 此时容易看出矛盾。
+        \item[$\bullet$] 如果$0<t_*<T$, 那么对于充分小的$\delta>0$, 当$t\in \left[0,t_*+\delta\right]$时有$x(qs)=y(qs)$, 从而
+        \begin{equation*}
+            \left\| x(t) - y(t) \right\| \leqslant {L}{\Gamma(\alpha)}^{-1} \int_0^t (t-s)^{\alpha-1} \|x(s)-y(s)\| \differential s,
+        \end{equation*}
+        然后利用分数阶Gronwall不等式就推出矛盾。
+        \item[$\bullet$] 如果$t_*=0$, 那么对于充分小的$\delta>0$, 当$t\in \left[0,\delta\right]$时，
+        \begin{align*}
+            \left\| x(t) - y(t) \right\| \leqslant 2L\Gamma(\alpha+1)^{-1}t^\alpha \max_{0\leqslant s\leqslant t}\|x(s)-y(s)\|,
+        \end{align*}
+        两边对$t\in[0,\delta]$取最大值，得到
+        \begin{equation*}
+            \max_{0\leqslant t\leqslant \delta}\|x(t)-y(t)\|\leqslant 2L\Gamma(\alpha+1)^{-1}\delta^\alpha \max_{0\leqslant t\leqslant \delta}\|x(t)-y(t)\|,
+        \end{equation*}
+        因此只要选取$2L\Gamma(\alpha+1)^{-1}\delta^\alpha<1$就能看出在$[0,\delta]$上成立$x=y$, 这也导致矛盾。
+    \end{itemize}
+    综合以上各种情况知$x$和$y$在整个$I$上相等。
+    \\~\\如若$x,y$是$[0,\infty)$上\mainEquation 的弱解，上述结果表明它们在任何有限区间$[0,T]$上相等，因而在$[0,\infty)$上相等。唯一性证毕。
+\end{frame}
+
+\begin{frame}{L1格式}
+    在叙述数值解部分的结果之前，先给出数值格式。取严格递增趋于正无穷的序列$\left(t_n\right)_{n=0}^\infty$作为时间节点，其中$t_0=0$. 利用在每个小区间上线性插值的办法来近似导数和延迟，就得到针对\mainEquation 的L1数值格式
+    \begin{equation*}\label{L1格式}
+        x_n=\left(t_n-t_{n-1}\right)^\alpha \Bigl(\Gamma(2-\alpha) f\left(t_n,x_n,\overline{x}^n\right) + \sum_{k=0}^{n-1} \left(a_{n,k+1}-a_{n,k}\right) x_k\Bigr),
+    \end{equation*}
+    其中$a_{n,k}:=\frac{\left(t_n-t_{k-1}\right)^{1-\alpha}-\left(t_n-t_{k}\right)^{1-\alpha}}{t_k-t_{k-1}} (1\leqslant k\leqslant n),a_{n,0}:=0,\overline x_n$是对$x(qt_n)$的近似，即设$t_{m_n-1}\leqslant qt_n<t_{m_n}$, 有
+    \begin{equation*}
+        \overline x_n:=\frac{t_{m_n}-qt_n}{t_{m_n}-t_{m_n-1}}x_{m_n-1}+\frac{qt_n-t_{m_n-1}}{t_{m_n}-t_{m_n-1}}x_{m_n}.
+    \end{equation*}
+\end{frame}
+\begin{frame}{数值解的长时间有界性}
+    \begin{theorem}\label{dissipativity}
+        如果存在常数$a>0,a_u>a_v>0$, 使得对任何$t\geqslant 0$和$u,v\in \realset^d$成立
+        \begin{equation*}
+            \left<u,f(t,u,v)\right>\leqslant a-a_u \|u\|^2+a_v \|v\|^2,
+        \end{equation*}
+        那么
+        \begin{equation*}\label{耗散性结果}
+            \|x_n\|\leqslant \max\left(\left(a_u-a_v\right)^{-1/2}a^{1/2},\|x_0\|\right).
+        \end{equation*}
+    \end{theorem}
+\end{frame}
+\begin{frame}{证明概要}
+    在L1数值格式两边与$x_n$作内积并结合Cauchy-Schwarz不等式得到
+    \begin{equation}\label{耗散性-内积放缩}
+        \begin{aligned}
+            \|x_n\|^2&\leqslant \left(t_n-t_{n-1}\right)^\alpha \Bigl( \Gamma(2-\alpha) \left(a-a_u \|x_n\|^2 + a_v \|\overline x_n\|^2\right)
+            \\ &\relphantom{\leqslant} + \sum_{k=0}^{n-1} \left(a_{n,k+1}-a_{n,k}\right) \frac{\|x_k\|^2+\|x_n\|^2}{2}\Bigr).
+        \end{aligned}
+    \end{equation}
+    注意到$\sum_{k=0}^{n-1} \left(a_{n,k+1}-a_{n,k}\right)=a_{n,n}=\left(t_n-t_{n-1}\right)^{-\alpha}$, 有
+    \begin{equation}\label{耗散性-求和}
+        \left(t_n-t_{n-1}\right)^\alpha \sum_{k=0}^{n-1} \left(a_{n,k+1}-a_{n,k}\right) \frac{\|x_k\|^2+\|x_n\|^2}{2}\leqslant\frac{1}{2}\Bigl(\max_{0\leqslant k<n} \|x_k\|^2 + \|x_n\|^2\Bigr).
+    \end{equation}
+\end{frame}
+\begin{frame}{证明概要}
+    将\cref{耗散性-求和}代入\cref{耗散性-内积放缩}得到
+    \begin{align*}
+        \|x_n\|^2 &\leqslant a_n \left(a-a_u \|x_n\|^2 + a_v \|\overline x_n\|^2\right) + \max_{0\leqslant k<n} \|x_k\|^2
+        \\ &\leqslant a_n \Bigl(a-a_u \|x_n\|^2 + a_v \max_{0\leqslant k\leqslant n} \|x_k\|^2\Bigr) + \max_{0\leqslant k<n} \|x_k\|^2,
+    \end{align*}
+    其中$a_n:=2\left(t_n-t_{n-1}\right)^\alpha \Gamma(2-\alpha)$. 现在易证
+    \begin{equation*}
+        \|x_n\|^2\leqslant \max\bigl((a_u-a_v)^{-1}a,\max_{0\leqslant k<n}\|x_k\|^2\bigr),\,n\in\positiveinteger,
+    \end{equation*}
+    最后归纳即得结论。
+\end{frame}
+
+\begin{frame}{数值解的稳定性}
+    把\mainEquation 的初值条件改为$x(0)=y_0$, 用同样的数值算法（包括步长）产生数值解$\left(y_n\right)_{n=0}^\infty$和对“延迟”的近似$\left(\overline y_n\right)_{n=0}^\infty$, 并记$e_n:=y_n-x_n, \overline e_n:=\overline y_n-\overline x_n$.
+    \begin{theorem}\label{stability}
+        如果存在常数$b_u>b_v>0$, 使得对任何$t\geqslant 0$和$u,v,x,y\in \realset^d$成立
+        \begin{equation*}
+            \left\{
+                \begin{aligned}
+                    &\left<f(t,u,v)-f(t,x,v),u-x\right>\leqslant -b_u \|u-x\|^2,
+                    \\ &\|f(t,u,v)-f(t,u,y)\|\leqslant b_v \|v-y\|,
+                \end{aligned}
+            \right.
+        \end{equation*}
+        那么
+        \begin{equation*}
+            \|e_n\|\leqslant \|e_0\|.
+        \end{equation*}
+    \end{theorem}
+\end{frame}
+\begin{frame}{证明概要}
+    写出$\left(e_n\right)_{n=0}^\infty$满足的等式为
+    \begin{equation*}
+        e_n=\left(t_n-t_{n-1}\right)^\alpha\Bigl(\sum_{k=0}^{n-1}\left(a_{n,k+1}-a_{n,k}\right)e_k+\Gamma(2-\alpha)\left(f\left(t_n,y_n,\overline y_n\right)-f\left(t_n,x_n,\overline x_n\right)\right)\Bigr),
+    \end{equation*}
+    两边同$e_n$取内积并放缩得到
+    \begin{equation*}
+        \|e_n\|^2\leqslant \max_{0\leqslant k<n} \|e_k\|^2+a_n\Bigl(-b_u \|e_n\|^2+b_v \max_{0\leqslant k\leqslant n} \|e_k\|^2\Bigr).
+    \end{equation*}
+    其中$a_n:=2\left(t_n-t_{n-1}\right)^\alpha\Gamma(2-\alpha)$. 由此容易得到
+    \begin{equation*}
+        \|e_n\|\leqslant\max_{0\leqslant k< n} \|e_k\|,\,n\in\positiveinteger.
+    \end{equation*}
+    最后归纳即得结论。
+\end{frame}
+
+\section{后期拟完成的研究工作及进度安排}
+\begin{frame}{后期拟完成的研究工作及进度安排}
+    \begin{itemize}\setlength{\itemsep}{1.5em}
+        \item[$\bullet$] 2024年7月，整理现有工作，并考虑向带有Caputo导数的弱奇性方程推广。
+        \item[$\bullet$] 2024年8-11月，涉猎关于分数阶数值方法收敛性的文章，并考虑\mainEquation 的L1格式的收敛性。
+        \item[$\bullet$] 2024年12月-2025年2月，考虑更多类型的方程和数值算法。
+        \item[$\bullet$] 2025年3月-2025年5月，撰写毕业论文，准备毕业答辩。
+    \end{itemize}
+\end{frame}
+
+\section{存在的困难与问题}
+\begin{frame}{存在的困难与问题}
+    分数阶导数的记忆性导致数值方法的收敛性难以分析。
+    \\~\\
+    这里数值方法收敛指的是在时间步长趋于0时，数值解和弱解的差距也会趋于0.
+\end{frame}
 
 \section*{结束致谢}
 

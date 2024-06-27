@@ -1,21 +1,21 @@
 这一节来叙述上一节中各定理的证明。
 \begin{proof}[\cref{Peano}的证明]
     记$M<\infty$是集合$\left\{\left\|f(t,u,v)\right\|\colon t\in [0,1], u,v\in B_{2\|x_0\|}(0)\right\}$的一个上界，并取$0<h\leqslant 1$充分小，使得$\Gamma(\alpha + 1)^{-1} h^\alpha M \leqslant \|x_0\|$. 对于正整数$m$，作$t^m_{n}:=nh/m,\,n=0,1,2,\dots,m$, 然后按下式构造$\left(x^m_{n}\right)_{n=0}^m\subset \realset^d$,
-    \begin{equation}\label{PicardSequence}
-        x^m_{n}=x_0+\Gamma(\alpha)^{-1}\sum_{k=1}^n\int_{t_{k-1}}^{t_k}\left(t_n-s\right)^{\alpha-1}f\bigl(s,x^m_{k-1},x^m_{q^m_{k-1}}\bigr)\differential s,\,n=1,2,\dots,m,
-    \end{equation}
+    \begin{equation*}
+        x^m_{n}=x_0+\Gamma(\alpha)^{-1}\sum_{k=1}^n\int_{t^m_{k-1}}^{t^m_k}\left(t^m_n-s\right)^{\alpha-1}f\bigl(s,x^m_{k-1},x^m_{q^m_{k-1}}\bigr)\differential s,\,n=1,2,\dots,m,
+    \end{equation*}
     其中$q^m_{k}:=\lfloor qt^m_k \rfloor$. 利用这些有限长的序列，分段线性插值地构造连续函数$\left(x^m\right)_{m=1}^\infty\colon[0,h]\to \realset^d$，即
     \begin{equation*}
         x^m(t):=\frac{t^m_n-t}{t^m_n-t^m_{n-1}}x^m_{n-1}+\frac{t-t^m_{n-1}}{t^m_n-t^m_{n-1}}x^m_{n},\,t^m_{n-1}\leqslant t\leqslant t^m_n.
     \end{equation*}
     另外，为方便起见，对于$\delta>0$, 记$D(\delta):=\left\{(s,t)\in [0,h]\times [0,h]\colon 0\leqslant t-s<\delta\right\}$.
 
-    现在证明$\|x^m(t_n)\|\leqslant 2\|x_0\|,\,0\leqslant t\leqslant h,n=0,1,2,\dots,m,m\in \positiveinteger$. 施归纳于$n$. $n=0$时显然。假设对于$0\leqslant k<n$成立$\|x^m(t_k)\|\leqslant 2\|x_0\|$, 根据$M$和$h$的定义,
+    现在证明$\|x^m(t^m_n)\|\leqslant 2\|x_0\|,\,0\leqslant t\leqslant h,n=0,1,2,\dots,m,m\in \positiveinteger$. 施归纳于$n$. $n=0$时显然。假设对于$0\leqslant k<n$成立$\|x^m(t^m_k)\|\leqslant 2\|x_0\|$, 根据$M$和$h$的定义,
     \begin{align*}
-        \left\|x^m(t_n)\right\|&\leqslant \|x_0\|+\Gamma(\alpha)^{-1}\sum_{k=1}^{n}\int_{t_{k-1}}^{t_k} \left(t_n-s\right)^{\alpha-1} \bigl\|f\bigl(s,x^m_{k-1},x^m_{q^m_{k-1}}\bigr)\bigr\| \differential s
-        \\ &\leqslant \|x_0\|+\Gamma(\alpha)^{-1} \sum_{k=1}^{n}\int_{t_{k-1}}^{t_k} \left(t_n-s\right)^{\alpha-1} M \differential s
-        \\ &= \|x_0\|+\Gamma(\alpha)^{-1} M \int_{0}^{t_n} \left(t_n-s\right)^{\alpha-1} \differential s
-        \\ &= \|x_0\|+\Gamma(\alpha+1)^{-1} M t_n^\alpha
+        \left\|x^m(t^m_n)\right\|&\leqslant \|x_0\|+\Gamma(\alpha)^{-1}\sum_{k=1}^{n}\int_{t^m_{k-1}}^{t^m_k} \left(t^m_n-s\right)^{\alpha-1} \bigl\|f\bigl(s,x^m_{k-1},x^m_{q^m_{k-1}}\bigr)\bigr\| \differential s
+        \\ &\leqslant \|x_0\|+\Gamma(\alpha)^{-1} \sum_{k=1}^{n}\int_{t^m_{k-1}}^{t^m_k} \left(t^m_n-s\right)^{\alpha-1} M \differential s
+        \\ &= \|x_0\|+\Gamma(\alpha)^{-1} M \int_{0}^{t^m_n} \left(t^m_n-s\right)^{\alpha-1} \differential s
+        \\ &= \|x_0\|+\Gamma(\alpha+1)^{-1} M \left(t^m_n\right)^\alpha
         \\ &\leqslant \|x_0\|+\Gamma(\alpha+1)^{-1} M h^\alpha
         \leqslant 2\|x_0\|,
     \end{align*}
@@ -35,7 +35,7 @@
     而至于$0\leqslant s\leqslant t\leqslant h$, 不妨设$s\in\left[t^m_{k-1},t^m_k\right],t\in\left[t^m_{n-1},t^m_n\right]$. 如果$k<n$, 那么
     \begin{align*}
         \left\| x^m(t)-x^m(s) \right\|
-        &\leqslant \left\| x^m(t)-x^m(t_{n-1}) \right\|+\left\| x^m_{n-1}-x^m_k \right\|+\left\| x^m(t_k)-x^m(s) \right\|
+        &\leqslant \left\| x^m(t)-x^m(t^m_{n-1}) \right\|+\left\| x^m_{n-1}-x^m_k \right\|+\left\| x^m(t^m_k)-x^m(s) \right\|
         \\ &\leqslant \left\|x^m_{n}-x^m_{n-1}\right\|+\left\| x^m_{n-1}-x^m_k \right\|+\left\|x^m_{k}-x^m_{k-1}\right\|
         \\ &\leqslant 2M\Gamma(\alpha+1)^{-1}\left(\left(t^m_n-t^m_{n-1}\right)^\alpha + \left( t^m_{n-1}-t^m_{k}\right)^\alpha + \left(t^m_k-t^m_{k-1}\right)^\alpha\right)
         \\ &\leqslant 2M\Gamma(\alpha+1)^{-1}\left(2(h/m)^\alpha+(t-s)^\alpha\right),
@@ -60,37 +60,37 @@
         \end{aligned}
     \end{equation}
 
-    由$\left(x^m\right)_{m=1}^\infty$的等度连续性，存在$\delta_2=\delta_2(\varepsilon)>0$使得$\left\|x^m(t)-x^m(s)\right\|<\min \left(\delta_1/2,\allowbreak\varepsilon/4\right)$对任何$m\in \positiveinteger$及$(s,t)\in D\left(\delta_2\right)$成立。取$N_2=N_2(\delta_2)\in \positiveinteger$使得$h/N_2<\delta_2$. 一方面，注意到$m>N_2$时总有$t_n-t_{n-1}<\delta_2<\delta_1/2,\,n=0,1,2,\dots,m$, 于是$\left\|f\bigl(t,x^m_{n-1},x^m_{q^m_{n-1}}\bigr)-f\bigl(t,x^m(t),x^m(qt)\bigr)\right\|<\varepsilon \alpha \Gamma(\alpha) h^{-\alpha} / 4,\,t\in\left[t^m_{n-1},t^m_n\right]$, 从而
+    由$\left(x^m\right)_{m=1}^\infty$的等度连续性，存在$\delta_2=\delta_2(\varepsilon)>0$使得$\left\|x^m(t)-x^m(s)\right\|<\min \left(\delta_1/2,\allowbreak\varepsilon/4\right)$对任何$m\in \positiveinteger$及$(s,t)\in D\left(\delta_2\right)$成立。取$N_2=N_2(\delta_2)\in \positiveinteger$使得$h/N_2<\delta_2$. 一方面，注意到$m>N_2$时总有$t^m_n-t^m_{n-1}<\delta_2<\delta_1/2,\,n=0,1,2,\dots,m$, 于是$\left\|f\bigl(t,x^m_{n-1},x^m_{q^m_{n-1}}\bigr)-f\bigl(t,x^m(t),x^m(qt)\bigr)\right\|<\varepsilon \alpha \Gamma(\alpha) h^{-\alpha} / 4,\,t\in\left[t^m_{n-1},t^m_n\right]$, 从而
     \begin{equation}\label{tn}
         \begin{aligned}
-            &\relphantom{\leqslant}\Gamma(\alpha)\left\|x^m(t_n)-x_0-\Gamma(\alpha)^{-1}\int_{0}^{t_n}\left(t_n-s\right)^{\alpha-1}f(s,x^m(s),x^m(qs))\differential s\right\|
-            \\ &\leqslant \sum_{k=1}^{n}\int_{t_{k-1}}^{t_k}\left(t_n-s\right)^{\alpha-1}\left\|f\bigl(s,x^m_{k-1},x^m_{q^m_{k-1}}\bigr)-f\bigl(s,x^m(s),x^m(qs)\bigr)\right\|\differential s
-            \\ &\leqslant \sum_{k=1}^{n}\int_{t_{k-1}}^{t_k}\left(t_n-s\right)^{\alpha-1} \frac{\varepsilon \alpha \Gamma(\alpha) h^{-\alpha}}{4} \differential s
-            \\ &=\int_{0}^{t_n} \left(t_n-s\right)^{\alpha-1} \frac{\varepsilon \alpha \Gamma(\alpha) h^{-\alpha}}{4} \differential s
+            &\relphantom{\leqslant}\Gamma(\alpha)\left\|x^m(t^m_n)-x_0-\Gamma(\alpha)^{-1}\int_{0}^{t^m_n}\left(t^m_n-s\right)^{\alpha-1}f(s,x^m(s),x^m(qs))\differential s\right\|
+            \\ &\leqslant \sum_{k=1}^{n}\int_{t^m_{k-1}}^{t^m_k}\left(t^m_n-s\right)^{\alpha-1}\left\|f\bigl(s,x^m_{k-1},x^m_{q^m_{k-1}}\bigr)-f\bigl(s,x^m(s),x^m(qs)\bigr)\right\|\differential s
+            \\ &\leqslant \sum_{k=1}^{n}\int_{t^m_{k-1}}^{t^m_k}\left(t^m_n-s\right)^{\alpha-1} \frac{\varepsilon \alpha \Gamma(\alpha) h^{-\alpha}}{4} \differential s
+            \\ &=\int_{0}^{t^m_n} \left(t^m_n-s\right)^{\alpha-1} \frac{\varepsilon \alpha \Gamma(\alpha) h^{-\alpha}}{4} \differential s
             \leqslant \varepsilon\Gamma(\alpha)/4.
         \end{aligned}
     \end{equation}
-    另一方面，任取$t\in [0,h]$, 设$t\in\left[t_{n-1},t_n\right]$, 则对任何$m\in \positiveinteger$成立
+    另一方面，任取$t\in [0,h]$, 设$t\in\left[t^m_{n-1},t^m_n\right]$, 则对任何$m\in \positiveinteger$成立
     \begin{equation}\label{xmtnt}
-        \left\|x^m(t)-x^m(t_n)\right\|<\varepsilon/4.
+        \left\|x^m(t)-x^m(t^m_n)\right\|<\varepsilon/4.
     \end{equation}
 
-    根据文献\inlinecite{Webb}中的性质3.2(3), 在$f$和$x$都连续时，$t\mapsto \Gamma(\alpha)^{-1}\int_{0}^{t}(t-s)^{\alpha-1}f(s,x(s),x(qs))\differential s$也是连续的, 因此可取$N_3=N_3(\varepsilon)\in \positiveinteger$充分大（从而$h/N_3>0$足够小），使得$m>N_3$且$(s,t)\in D(h/N_3)$时，$\Gamma(\alpha)^{-1}\allowbreak\left\|\int_{0}^{t}(t-\tau)^{\alpha-1}f(\tau,x(\tau),x(q\tau))\differential \tau\right.\allowbreak-\left.\int_{0}^{s}(s-\tau)^{\alpha-1}f(\tau,x(\tau),x(q\tau))\differential \tau\right\|\allowbreak <\varepsilon/4$. 于是当$t\in [0,h]$时，设$t\in\left[t_{n-1},t_n\right]$, 有
+    根据文献\inlinecite{Webb}中的性质3.2(3), 在$f$和$x$都连续时，$t\mapsto \Gamma(\alpha)^{-1}\int_{0}^{t}(t-s)^{\alpha-1}f(s,x(s),x(qs))\differential s$也是连续的, 因此可取$N_3=N_3(\varepsilon)\in \positiveinteger$充分大（从而$h/N_3>0$足够小），使得$m>N_3$且$(s,t)\in D(h/N_3)$时，$\Gamma(\alpha)^{-1}\allowbreak\left\|\int_{0}^{t}(t-\tau)^{\alpha-1}f(\tau,x(\tau),x(q\tau))\differential \tau\right.\allowbreak-\left.\int_{0}^{s}(s-\tau)^{\alpha-1}f(\tau,x(\tau),x(q\tau))\differential \tau\right\|\allowbreak <\varepsilon/4$. 于是当$t\in [0,h]$时，设$t\in\left[t^m_{n-1},t^m_n\right]$, 有
     \begin{equation}\label{xtnt}
         \begin{aligned}
-            \Gamma(\alpha)^{-1}&\left\|\int_{0}^{t_n}(t_n-s)^{\alpha-1}f(s,x(s),x(qs))\differential s\right.
-            \\&\phantom{\left\|\vphantom{\int_{0}^{t_n}}\right.}-\left.\int_{0}^{t}(t-s)^{\alpha-1}f(s,x(s),x(qs))\differential s\right\|<\varepsilon/4.
+            \Gamma(\alpha)^{-1}&\left\|\int_{0}^{t^m_n}(t^m_n-s)^{\alpha-1}f(s,x(s),x(qs))\differential s\right.
+            \\&\phantom{\left\|\vphantom{\int_{0}^{t^m_n}}\right.}-\left.\int_{0}^{t}(t-s)^{\alpha-1}f(s,x(s),x(qs))\differential s\right\|<\varepsilon/4.
         \end{aligned}
     \end{equation}
     
-    现在取$N=N(\varepsilon):=\max (N_1,N_2,N_3)$, 根据\cref{xmx,tn,xmtnt,xtnt}以及三角不等式，当$m>N,t\in [0,h]$时，设$t\in \left[t_{n-1},t_n\right]$, 那么可以估计
+    现在取$N=N(\varepsilon):=\max (N_1,N_2,N_3)$, 根据\cref{xmx,tn,xmtnt,xtnt}以及三角不等式，当$m>N,t\in [0,h]$时，设$t\in \left[t^m_{n-1},t^m_n\right]$, 那么可以估计
     \begin{align*}
         &\relphantom{\leqslant}\left\|x^m(t)-x_0-\Gamma(\alpha)^{-1}\int_{0}^{t}(t-s)^{\alpha-1}f(s,x(s),x(qs))\differential s\right\|
-        \\ &\leqslant \left\|x^m(t)-x^m(t_n)\right\|
-        \\ &\relphantom{\leqslant}+\left\|x^m(t_n)-x_0-\Gamma(\alpha)^{-1}\int_{0}^{t_n}(t_n-s)^{\alpha-1}f(s,x^m(s),x^m(qs))\differential s\right\|
-        \\ &\relphantom{\leqslant}+\left\|x_0+\Gamma(\alpha)^{-1}\int_{0}^{t_n}(t_n-s)^{\alpha-1}f(s,x^m(s),x^m(qs))\differential s\right.
-        \\ &\relphantom{\leqslant+} \phantom{\left\|\right.} \left.-x_0-\Gamma(\alpha)^{-1}\int_{0}^{t_n}(t_n-s)^{\alpha-1}f(s,x(s),x(qs))\differential s\right\|
-        \\ &\relphantom{\leqslant}+\left\|x_0+\Gamma(\alpha)^{-1}\int_{0}^{t_n}(t_n-s)^{\alpha-1}f(s,x(s),x(qs))\differential s\right.
+        \\ &\leqslant \left\|x^m(t)-x^m(t^m_n)\right\|
+        \\ &\relphantom{\leqslant}+\left\|x^m(t^m_n)-x_0-\Gamma(\alpha)^{-1}\int_{0}^{t^m_n}(t^m_n-s)^{\alpha-1}f(s,x^m(s),x^m(qs))\differential s\right\|
+        \\ &\relphantom{\leqslant}+\left\|x_0+\Gamma(\alpha)^{-1}\int_{0}^{t^m_n}(t^m_n-s)^{\alpha-1}f(s,x^m(s),x^m(qs))\differential s\right.
+        \\ &\relphantom{\leqslant+} \phantom{\left\|\right.} \left.-x_0-\Gamma(\alpha)^{-1}\int_{0}^{t^m_n}(t^m_n-s)^{\alpha-1}f(s,x(s),x(qs))\differential s\right\|
+        \\ &\relphantom{\leqslant}+\left\|x_0+\Gamma(\alpha)^{-1}\int_{0}^{t^m_n}(t^m_n-s)^{\alpha-1}f(s,x(s),x(qs))\differential s\right.
         \\ &\relphantom{\leqslant+} \phantom{\left\|\right.} \left.-x_0-\Gamma(\alpha)^{-1}\int_{0}^{t}(t-s)^{\alpha-1}f(s,x(s),x(qs))\differential s\right\|
         <\varepsilon,
     \end{align*}
@@ -103,12 +103,12 @@
 
 \begin{proof}[\cref{Picard}的证明]
     \textbf{（存在性）} 构造Picard序列$\left(x_n\right)_{n=0}^\infty\colon [0,\infty)\to \realset^d$满足
-    \begin{equation*}
+    \begin{equation}\label{PicardSequence}
         \left\{\begin{aligned}
             x_{n+1}(t)&:=x_0 + \Gamma(\alpha)^{-1} \textstyle\int_0^t (t-s)^{\alpha-1} f(s,x_n(s),x_n(qs))\differential s, & n\in \naturalset,\\
             x_0(t)&:=x_0, & {}
         \end{aligned}\right.
-    \end{equation*}
+    \end{equation}
     为方便，这里用$x_0\in C([0,\infty),\realset^d)$表达恒取$x_0\in\realset^d$的常值函数，通常不会引起混淆。记$M<\infty$是集合$\left\{\left\|f(t,u,v)\right\|\colon t\in [0,1], u,v\in B_{2\|x_0\|}(0)\right\}$的一个上界，并取$0<h\leqslant 1$充分小，使得$\Gamma(\alpha + 1)^{-1} h^\alpha M \leqslant \|x_0\|$. 可以归纳地证明$\left\|x_{n}(t)\right\|\leqslant 2\|x_0\|,\;t\in [0,h],n\in \naturalset$. 取$L:=L(2\|x_0\|)$, 那么对于$t\in [0,h],n\in \positiveinteger$,
     \begin{equation}\label{Picard估计递归}
         \begin{aligned}
@@ -144,9 +144,9 @@
         \prod_{k=1}^n \Beta(\alpha, k\alpha+1)=\prod_{k=1}^n \frac{\Gamma(\alpha) \Gamma(k\alpha+1)}{\Gamma((k+1)\alpha+1)}=\Gamma(\alpha)^n \frac{\Gamma(\alpha+1)}{\Gamma((n+1)\alpha+1)},
     \end{equation*}
     我们有
-    \begin{equation}
+    \begin{equation*}
         \left\| x_{n+1}(t) - x_n(t) \right\|\leqslant \frac{L^n M t^{(n+1)\alpha}}{\Gamma((n+1)\alpha+1)} \exp \frac{q^\alpha}{1-q^\alpha},\,t\in [0,h].
-    \end{equation}
+    \end{equation*}
 
     由Cauchy-Hadamard公式和Stirling公式易知Mittag-Leffler函数\cite{book}$E_\alpha(z)=\sum_{n=0}^{\infty}\Gamma(\alpha n+1)^{-1}z^n$对于任何$z\in \complexset$收敛，然后根据Weierstrass M判别法就得到函数项级数$\sum_{n=0}^\infty \left(x_{n+1}-x_n\right)$在$[0,h]$上绝对一致收敛，于是函数列$\left(x_n\right)_{n=0}^\infty$在$[0,h]$上存在一致极限$x$. 这说明任取$\varepsilon>0$, 总存在$N=N(\varepsilon)\in \naturalset$, 使得$\left\|x_n(t)-x(t)\right\|<\varepsilon$在$n>N$且$t\in [0,h]$时成立。这样一来，当$t\in [0,h]$时，
     \begin{align*}
@@ -166,7 +166,7 @@
 
     如果$L$可以不依赖于$r$, 那么\cref{Picard估计递归}对于一切$t\in [0,\infty)$成立，由此可见\mainEquation 的弱解将在$[0,\infty)$上全局存在。
 
-    \textbf{（唯一性）} 设$0<T:=\sup I<\infty$, $x$和$y\in C[0,T]$都是\mainEquation 的弱解。记$L:=L\left(\max\left(\max_{0\leqslant t\leqslant T}\|x(t)\|,\right.\right.\allowbreak\left.\left.\max_{0\leqslant t\leqslant T}\|y(t)\|\right)\right)$, 并作$S:=\{t\in [0,T]\colon x(t)\neq y(t)\},t_*:=\inf S$, 下证$t_*=\infty$. 反证，假设$0\leqslant t_*\leqslant T$, 分三种情况讨论。
+    \textbf{（唯一性）} 先设$0<T:=\sup I<\infty$, $[0,T]$中的$\realset^d$值连续函数$x,y$都是\mainEquation 的弱解。记$L:=L\left(\max\left(\max_{0\leqslant t\leqslant T}\|x(t)\|,\right.\right.\allowbreak\left.\left.\max_{0\leqslant t\leqslant T}\|y(t)\|\right)\right)$, 并作$S:=\{t\in [0,T]\colon x(t)\neq y(t)\},t_*:=\inf S$, 下证$t_*=\infty$. 反证，假设$0\leqslant t_*\leqslant T$, 分3种情况讨论。
     \begin{enumerate}
         \item 如果$t_*=T$, 此时必有$T\in I$, 且在$[0,T)$上$x=y$, 而$x,y$都是连续的，因此必在闭区间$[0,T]$上处处相等，此时$S=\varnothing,t_*=\infty$, 矛盾。
         \item 如果$0<t_*<T$, 那么在$[0,t_*)$上有$x=y$. 选取$\delta>0$充分小，使得$t_*+\delta\leqslant T$且$q\cdot (t_*+\delta)<t_*$, 然后就有$x(qt)=y(qt),\,0\leqslant t\leqslant t_*+\delta$. 当$t\in \left[0,t_*+\delta\right]$时，
@@ -177,7 +177,7 @@
         然后利用分数阶Gronwall不等式\cite{mild}就得到在$\left[0,t_*+\delta\right]$上都有$x=y$, 故$t_*\geqslant t_*+\delta$, 而这是不可能的。
         \item 如果$t_*=0$, 选取$\delta\in (0,T]$充分小，使得$2L\Gamma(\alpha+1)^{-1}\delta^\alpha<1$. 当$t\in[0,\delta]$时，
         \begin{align*}
-            &\relphantom{\leqslant}\left\| x(t) - y(t) \right\| \\& \leqslant L\Gamma(\alpha)^{-1}\int_0^t (t-s)^{\alpha-1} \bigl(\|x(s)-y(s)\|+\|x(qs)-y(qs)\|\bigr) \differential s\\
+            \left\| x(t) - y(t) \right\| &\leqslant L\Gamma(\alpha)^{-1}\int_0^t (t-s)^{\alpha-1} \bigl(\|x(s)-y(s)\|+\|x(qs)-y(qs)\|\bigr) \differential s\\
             &\leqslant 2L\Gamma(\alpha)^{-1} \Bigl(\max_{0\leqslant s\leqslant t}\|x(s)-y(s)\|\Bigr) \int_0^t (t-s)^{\alpha-1} \differential s\\
             &=2L\Gamma(\alpha+1)^{-1}t^\alpha \max_{0\leqslant s\leqslant t}\|x(s)-y(s)\|.
         \end{align*}
@@ -202,7 +202,7 @@
     \begin{equation}\label{耗散性-求和}
         \left(t_n-t_{n-1}\right)^\alpha \sum_{k=0}^{n-1} \left(a_{n,k+1}-a_{n,k}\right) \frac{\|x_k\|^2+\|x_n\|^2}{2}\leqslant\frac{1}{2}\Bigl(\max_{0\leqslant k<n} \|x_k\|^2 + \|x_n\|^2\Bigr).
     \end{equation}
-    将\eqref{耗散性-求和}代入\cref{耗散性-内积放缩}得到
+    将\cref{耗散性-求和}代入\cref{耗散性-内积放缩}得到
     \begin{align*}
         \|x_n\|^2 &\leqslant a_n \left(a-a_u \|x_n\|^2 + a_v \|\overline x_n\|^2\right) + \max_{0\leqslant k<n} \|x_k\|^2
         \\ &\leqslant a_n \Bigl(a-a_u \|x_n\|^2 + a_v \max_{0\leqslant k\leqslant n} \|x_k\|^2\Bigr) + \max_{0\leqslant k<n} \|x_k\|^2,
@@ -231,8 +231,7 @@
     \begin{equation*}
         \|e_n\|^2\leqslant \max_{0\leqslant k<n} \|e_k\|^2+a_n\Bigl(-b_u \|e_n\|^2+b_v \max_{0\leqslant k\leqslant n} \|e_k\|^2\Bigr).
     \end{equation*}
-    一种情况是$\|e_n\|=\max_{0\leqslant k\leqslant n} \|e_k\|$, 此时
-    $\max_{0\leqslant k<n} \|e_k\|^2 \geqslant \|e_n\|^2 (1+ a_n(b_u-b_v))\geqslant \|e_n\|^2=\max_{0\leqslant k\leqslant n} \|e_k\|^2\geqslant \max_{0\leqslant k<n} \|e_k\|^2$, 这个不等式链的最左端和最右端一样，因此其中的不等号全取等，特别地有$\|e_n\|=\max_{0\leqslant k<n} \|e_k\|$. 而另一种情况是$\|e_n\|<\max_{0\leqslant k\leqslant n} \|e_k\|$, 此时显然有$\|e_n\|<\max_{0\leqslant k< n} \|e_k\|$. 总之，
+    一种情况是$\|e_n\|=\max_{0\leqslant k\leqslant n} \|e_k\|$, 此时$\max_{0\leqslant k<n} \|e_k\|^2 \geqslant \|e_n\|^2 (1+ a_n(b_u-b_v))\geqslant \|e_n\|^2=\max_{0\leqslant k\leqslant n} \|e_k\|^2\geqslant \max_{0\leqslant k<n} \|e_k\|^2$, 这个不等式链的最左端和最右端一样，因此其中的不等号全取等，特别地有$\|e_n\|=\max_{0\leqslant k<n} \|e_k\|$. 而另一种情况是$\|e_n\|<\max_{0\leqslant k\leqslant n} \|e_k\|$, 此时显然有$\|e_n\|<\max_{0\leqslant k< n} \|e_k\|$. 总之，
     \begin{equation*}
         \|e_n\|\leqslant\max_{0\leqslant k< n} \|e_k\|,\,n\in\positiveinteger.
     \end{equation*}
