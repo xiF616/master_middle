@@ -50,9 +50,9 @@
     \begin{equation}\label{xmts}
         \left\| x^m(t)-x^m(s) \right\| \leqslant 2M\Gamma(\alpha+1)^{-1}\left(2(h/m)^\alpha+(t-s)^\alpha\right).
     \end{equation}
-    任给$\varepsilon>0$, 取$N=N(\varepsilon)\in \positiveinteger$和$\delta_0=\delta_0(\varepsilon)>0$分别满足$2M\Gamma(\alpha+1)^{-1}\delta_0^\alpha < \varepsilon/2$和$4M\Gamma(\alpha+1)^{-1}(h/N)^\alpha<\varepsilon/2$. 由\cref{xmts}可知，$\left\| x^m(t)-x^m(s) \right\| < \varepsilon$对任何$m>N$及$(s,t)\in D(\delta_0)$成立。至于$1\leqslant m\leqslant N$, 由于每个$x^m$都是$[0,h]$上的一致连续函数，故存在有限个只依赖于$\varepsilon$的正数$\left(\delta_m\right)_{m=1}^N$, 使得对于$(s,t)\in D(\delta_m)$成立$\left\| x^m(t)-x^m(s) \right\| < \varepsilon$. 现在取$\delta=\delta(\varepsilon):=\min_{0\leqslant m\leqslant N} \delta_m>0$, 那么当$0\leqslant s\leqslant t \leqslant h$且$t-s<\delta$时，$\left\| x^m(t)-x^m(s) \right\| < \varepsilon$对于任何$m\in \positiveinteger$成立。这说明$\left(x^m\right)_{m=1}^\infty$是$C[0,h]$中的一致等度连续函数列。
+    任给$\varepsilon>0$, 取$N=N(\varepsilon)\in \positiveinteger$和$\delta_0=\delta_0(\varepsilon)>0$分别满足$2M\Gamma(\alpha+1)^{-1}\delta_0^\alpha < \varepsilon/2$和$4M\Gamma(\alpha+1)^{-1}(h/N)^\alpha<\varepsilon/2$. 由\cref{xmts}可知，$\left\| x^m(t)-x^m(s) \right\| < \varepsilon$对任何$m>N$及$(s,t)\in D(\delta_0)$成立。至于$1\leqslant m\leqslant N$, 由于每个$x^m$都是$[0,h]$上的一致连续函数，故存在有限个只依赖于$\varepsilon$的正数$\left\{\delta_m\right\}_{m=1}^N$, 使得对于$(s,t)\in D(\delta_m)$成立$\left\| x^m(t)-x^m(s) \right\| < \varepsilon$. 现在取$\delta=\delta(\varepsilon):=\min_{0\leqslant m\leqslant N} \delta_m>0$, 那么当$0\leqslant s\leqslant t \leqslant h$且$t-s<\delta$时，$\left\| x^m(t)-x^m(s) \right\| < \varepsilon$对于任何$m\in \positiveinteger$成立。这说明$\left(x^m\right)_{m=1}^\infty$是$C[0,h]$中的一致等度连续函数列。
 
-    使用Arzel\`a-Ascoli定理，我们得到$\left\{x^m\colon m\in \positiveinteger\right\}$在$C\left([0,h],\realset^d\right)$中相对紧，故有一致收敛子列，这个子列仍记为$\left(x^m\right)_{m=1}^\infty$, 并设其极限函数为$x\in C\left([0,h],\realset^d\right)$. 任给$\varepsilon>0$, 由于$f$在紧集$[0,h]\times \overline{B_{2\|x_0\|}(0)}\times \overline{B_{2\|x_0\|}(0)}\subset [0,h]\times \realset^d\times \realset^d$上一致连续，故存在$\delta_1=\delta_1(\varepsilon)>0$使得$\|f(t,u,v)-f(t,x,y)\|<\varepsilon \alpha \Gamma(\alpha) h^{-\alpha} / 4$对$t\in [0,h]$以及满足$\|u-x\|+\|v-y\|<\delta_1$的$u,v,x,y\in B_{2\|x_0\|}(0)$成立。取$N_1=N_1(\delta_1)\in \positiveinteger$, 使得当$m>N_1$且$t\in [0,h]$时成立$\left\|x^m(t)-x(t)\right\|<\delta_1/2$, 从而
+    使用Arzel\`a-Ascoli定理，我们得到$\left\{x^m\colon m\in \positiveinteger\right\}$在$C\left([0,h],\realset^d\right)$中相对紧，故有一致收敛子列，这个子列仍记为$\left\{x^m\right\}_{m=1}^\infty$, 并设其极限函数为$x\in C\left([0,h],\realset^d\right)$. 任给$\varepsilon>0$, 由于$f$在紧集$[0,h]\times \overline{B_{2\|x_0\|}(0)}\times \overline{B_{2\|x_0\|}(0)}\subset [0,h]\times \realset^d\times \realset^d$上一致连续，故存在$\delta_1=\delta_1(\varepsilon)>0$使得$\|f(t,u,v)-f(t,x,y)\|<\varepsilon \alpha \Gamma(\alpha) h^{-\alpha} / 4$对$t\in [0,h]$以及满足$\|u-x\|+\|v-y\|<\delta_1$的$u,v,x,y\in B_{2\|x_0\|}(0)$成立。取$N_1=N_1(\delta_1)\in \positiveinteger$, 使得当$m>N_1$且$t\in [0,h]$时成立$\left\|x^m(t)-x(t)\right\|<\delta_1/2$, 从而
     \begin{equation}\label{xmx}
         \begin{aligned}
             &\relphantom{\leqslant}\left\|\int_{0}^{t}(t-s)^{\alpha-1}f(s,x^m(s),x^m(qs))\differential s - \int_{0}^{t}(t-s)^{\alpha-1}f(s,x(s),x(qs))\differential s\right\|
@@ -60,7 +60,7 @@
         \end{aligned}
     \end{equation}
 
-    由$\left(x^m\right)_{m=1}^\infty$的等度连续性，存在$\delta_2=\delta_2(\varepsilon)>0$使得$\left\|x^m(t)-x^m(s)\right\|<\min \left(\delta_1/2,\allowbreak\varepsilon/4\right)$对任何$m\in \positiveinteger$及$(s,t)\in D\left(\delta_2\right)$成立。取$N_2=N_2(\delta_2)\in \positiveinteger$使得$h/N_2<\delta_2$. 一方面，注意到$m>N_2$时总有$t^m_n-t^m_{n-1}<\delta_2<\delta_1/2,\,n=0,1,2,\dots,m$, 于是$\left\|f\bigl(t,x^m_{n-1},x^m_{q^m_{n-1}}\bigr)-f\bigl(t,x^m(t),x^m(qt)\bigr)\right\|<\varepsilon \alpha \Gamma(\alpha) h^{-\alpha} / 4,\,t\in\left[t^m_{n-1},t^m_n\right]$, 从而
+    由$\left(x^m\right)_{m=1}^\infty$的等度连续性，存在$\delta_2=\delta_2(\varepsilon)>0$使得$\left\|x^m(t)-x^m(s)\right\|<\min \{\delta_1/2,\varepsilon/4\}$对任何$m\in \positiveinteger$及$(s,t)\in D\left(\delta_2\right)$成立。取$N_2=N_2(\delta_2)\in \positiveinteger$使得$h/N_2<\delta_2$. 一方面，注意到$m>N_2$时总有$t^m_n-t^m_{n-1}<\delta_2<\delta_1/2,\,n=0,1,2,\dots,m$, 于是对$t\in\left[t^m_{n-1},t^m_n\right]$成立$\left\|f\bigl(t,x^m_{n-1},x^m_{q^m_{n-1}}\bigr)-f\bigl(t,x^m(t),x^m(qt)\bigr)\right\|<\varepsilon \alpha \Gamma(\alpha) h^{-\alpha}/4$, 故
     \begin{equation}\label{tn}
         \begin{aligned}
             &\relphantom{\leqslant}\Gamma(\alpha)\left\|x^m(t^m_n)-x_0-\Gamma(\alpha)^{-1}\int_{0}^{t^m_n}\left(t^m_n-s\right)^{\alpha-1}f(s,x^m(s),x^m(qs))\differential s\right\|
@@ -83,7 +83,7 @@
         \end{aligned}
     \end{equation}
     
-    现在取$N=N(\varepsilon):=\max (N_1,N_2,N_3)$, 根据\cref{xmx,tn,xmtnt,xtnt}以及三角不等式，当$m>N,t\in [0,h]$时，设$t\in \left[t^m_{n-1},t^m_n\right]$, 那么可以估计
+    现在取$N=N(\varepsilon):=\max \{N_1,N_2,N_3\}$, 根据\cref{xmx,tn,xmtnt,xtnt}以及三角不等式，当$m>N,t\in [0,h]$时，设$t\in \left[t^m_{n-1},t^m_n\right]$, 那么可以估计
     \begin{align*}
         &\relphantom{\leqslant}\left\|x^m(t)-x_0-\Gamma(\alpha)^{-1}\int_{0}^{t}(t-s)^{\alpha-1}f(s,x(s),x(qs))\differential s\right\|
         \\ &\leqslant \left\|x^m(t)-x^m(t^m_n)\right\|
@@ -102,7 +102,7 @@
 \end{proof}
 
 \begin{proof}[\cref{Picard}的证明]
-    \textbf{（存在性）} 构造Picard序列$\left(x_n\right)_{n=0}^\infty\colon [0,\infty)\to \realset^d$满足
+    \textbf{（存在性）} 构造Picard序列$\left\{x_n\right\}_{n=0}^\infty\colon [0,\infty)\to \realset^d$满足
     \begin{equation}\label{PicardSequence}
         \left\{\begin{aligned}
             x_{n+1}(t)&:=x_0 + \Gamma(\alpha)^{-1} \textstyle\int_0^t (t-s)^{\alpha-1} f(s,x_n(s),x_n(qs))\differential s, & n\in \naturalset,\\
@@ -148,7 +148,7 @@
         \left\| x_{n+1}(t) - x_n(t) \right\|\leqslant \frac{L^n M t^{(n+1)\alpha}}{\Gamma((n+1)\alpha+1)} \exp \frac{q^\alpha}{1-q^\alpha},\,t\in [0,h].
     \end{equation*}
 
-    由Cauchy-Hadamard公式和Stirling公式易知Mittag-Leffler函数\cite{book}$E_\alpha(z)=\sum_{n=0}^{\infty}\Gamma(\alpha n+1)^{-1}z^n$对于任何$z\in \complexset$收敛，然后根据Weierstrass M判别法就得到函数项级数$\sum_{n=0}^\infty \left(x_{n+1}-x_n\right)$在$[0,h]$上绝对一致收敛，于是函数列$\left(x_n\right)_{n=0}^\infty$在$[0,h]$上存在一致极限$x$. 这说明任取$\varepsilon>0$, 总存在$N=N(\varepsilon)\in \naturalset$, 使得$\left\|x_n(t)-x(t)\right\|<\varepsilon$在$n>N$且$t\in [0,h]$时成立。这样一来，当$t\in [0,h]$时，
+    由Cauchy-Hadamard公式和Stirling公式易知Mittag-Leffler函数\cite{book}$E_\alpha(z)=\sum_{n=0}^{\infty}\Gamma(\alpha n+1)^{-1}z^n$对于任何$z\in \complexset$收敛，然后根据Weierstrass M判别法就得到函数项级数$\sum_{n=0}^\infty \left(x_{n+1}-x_n\right)$在$[0,h]$上绝对一致收敛，于是函数列$\left\{x_n\right\}_{n=0}^\infty$在$[0,h]$上存在一致极限$x$. 这说明任取$\varepsilon>0$, 总存在$N=N(\varepsilon)\in \naturalset$, 使得$\left\|x_n(t)-x(t)\right\|<\varepsilon$在$n>N$且$t\in [0,h]$时成立。这样一来，当$t\in [0,h]$时，
     \begin{align*}
         &\relphantom{\leqslant} \left\| \int_0^t (t-s)^{\alpha-1} f(s,x_n(s),x_n(qs))\differential s - \int_0^t (t-s)^{\alpha-1} f(s,x(s),x(qs))\differential s \right\|\\
         &\leqslant \int_0^t (t-s)^{\alpha-1} L\cdot\left(\left\|x_n(s)-x(s)\right\|+\left\|x_n(qs)-x(qs)\right\|\right) \differential s\\
@@ -166,7 +166,7 @@
 
     如果$L$可以不依赖于$r$, 那么\cref{Picard估计递归}对于一切$t\in [0,\infty)$成立，由此可见\mainEquation 的弱解将在$[0,\infty)$上全局存在。
 
-    \textbf{（唯一性）} 先设$0<T:=\sup I<\infty$, $[0,T]$中的$\realset^d$值连续函数$x,y$都是\mainEquation 的弱解。记$L:=L\left(\max\left(\max_{0\leqslant t\leqslant T}\|x(t)\|,\right.\right.\allowbreak\left.\left.\max_{0\leqslant t\leqslant T}\|y(t)\|\right)\right)$, 并作$S:=\{t\in [0,T]\colon x(t)\neq y(t)\},t_*:=\inf S$, 下证$t_*=\infty$. 反证，假设$0\leqslant t_*\leqslant T$, 分3种情况讨论。
+    \textbf{（唯一性）} 先设$0<T:=\sup I<\infty$, $[0,T]$中的$\realset^d$值连续函数$x,y$都是\mainEquation 的弱解。记$L:=L\left(\max\left\{\max_{0\leqslant t\leqslant T}\|x(t)\|,\right.\right.\allowbreak\left.\left.\max_{0\leqslant t\leqslant T}\|y(t)\|\right\}\right)$, 并作$S:=\{t\in [0,T]\colon x(t)\neq y(t)\},t_*:=\inf S$, 下证$t_*=\infty$. 反证，假设$0\leqslant t_*\leqslant T$, 分3种情况讨论。
     \begin{enumerate}
         \item 如果$t_*=T$, 此时必有$T\in I$, 且在$[0,T)$上$x=y$, 而$x,y$都是连续的，因此必在闭区间$[0,T]$上处处相等，此时$S=\varnothing,t_*=\infty$, 矛盾。
         \item 如果$0<t_*<T$, 那么在$[0,t_*)$上有$x=y$. 选取$\delta>0$充分小，使得$t_*+\delta\leqslant T$且$q\cdot (t_*+\delta)<t_*$, 然后就有$x(qt)=y(qt),\,0\leqslant t\leqslant t_*+\delta$. 当$t\in \left[0,t_*+\delta\right]$时，
@@ -210,13 +210,13 @@
     其中$a_n:=2\left(t_n-t_{n-1}\right)^\alpha \Gamma(2-\alpha)$. 如果$\|x_n\|=\max_{0\leqslant k\leqslant n}\|x_k\|$, 那么$\|x_n\|^2 \leqslant a_n \left(a-a_u \|x_n\|^2 + a_v \|x_n\|^2\right) + \|x_n\|^2$, 此时$\|x_n\|^2 \leqslant (a_u-a_v)^{-1}a$; 否则$\|x_n\|<\max_{0\leqslant k<n}\|x_k\|$.
     因此，无论如何总有
     \begin{equation*}
-        \|x_n\|^2\leqslant \max\bigl((a_u-a_v)^{-1}a,\max_{0\leqslant k<n}\|x_k\|^2\bigr),\,n\in\positiveinteger.
+        \|x_n\|^2\leqslant \max\bigl\{(a_u-a_v)^{-1}a,\max_{0\leqslant k<n}\|x_k\|^2\bigr\},\,n\in\positiveinteger.
     \end{equation*}
     最后只需归纳即可得到想要的结论。
 \end{proof}
 
 \begin{proof}[\cref{stability}的证明]
-    写出$\left(e_n\right)_{n=0}^\infty$满足的等式为
+    写出$\left\{e_n\right\}_{n=0}^\infty$满足的等式为
     \begin{equation*}
         e_n=\left(t_n-t_{n-1}\right)^\alpha\Bigl(\sum_{k=0}^{n-1}\left(a_{n,k+1}-a_{n,k}\right)e_k+\Gamma(2-\alpha)\left(f\left(t_n,y_n,\overline y_n\right)-f\left(t_n,x_n,\overline x_n\right)\right)\Bigr),
     \end{equation*}
