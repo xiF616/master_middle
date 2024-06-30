@@ -290,13 +290,13 @@
 \end{frame}
 \begin{frame}{数值解的长时间有界性}
     \begin{theorem}\label{dissipativity}
-        如果存在常数$a>0,a_u>a_v>0$, 使得对任何$t\geqslant 0$和$u,v\in \realset^d$成立
+        如果存在常数$a>0,a_1>a_2>0$, 使得对任何$t\geqslant 0$和$u,v\in \realset^d$成立
         \begin{equation*}
-            \left<u,f(t,u,v)\right>\leqslant a-a_u \|u\|^2+a_v \|v\|^2,
+            \left<u,f(t,u,v)\right>\leqslant a-a_1 \|u\|^2+a_2 \|v\|^2,
         \end{equation*}
         那么
         \begin{equation*}\label{耗散性结果}
-            \|x_n\|\leqslant \max\left(\left(a_u-a_v\right)^{-1/2}a^{1/2},\|x_0\|\right).
+            \|x_n\|\leqslant \max\left(\left(a_1-a_2\right)^{-1/2}a^{1/2},\|x_0\|\right).
         \end{equation*}
     \end{theorem}
 \end{frame}
@@ -304,7 +304,7 @@
     在L1数值格式两边与$x_n$作内积并结合Cauchy-Schwarz不等式得到
     \begin{equation}\label{耗散性-内积放缩}
         \begin{aligned}
-            \|x_n\|^2&\leqslant \left(t_n-t_{n-1}\right)^\alpha \Bigl( \Gamma(2-\alpha) \left(a-a_u \|x_n\|^2 + a_v \|\overline x_n\|^2\right)
+            \|x_n\|^2&\leqslant \left(t_n-t_{n-1}\right)^\alpha \Bigl( \Gamma(2-\alpha) \left(a-a_1 \|x_n\|^2 + a_2 \|\overline x_n\|^2\right)
             \\ &\relphantom{\leqslant} + \sum_{k=0}^{n-1} \left(a_{n,k+1}-a_{n,k}\right) \frac{\|x_k\|^2+\|x_n\|^2}{2}\Bigr).
         \end{aligned}
     \end{equation}
@@ -316,12 +316,12 @@
 \begin{frame}{证明概要}
     将\cref{耗散性-求和}代入\cref{耗散性-内积放缩}得到
     \begin{align*}
-        \|x_n\|^2 &\leqslant a_n \left(a-a_u \|x_n\|^2 + a_v \|\overline x_n\|^2\right) + \max_{0\leqslant k<n} \|x_k\|^2
-        \\ &\leqslant a_n \Bigl(a-a_u \|x_n\|^2 + a_v \max_{0\leqslant k\leqslant n} \|x_k\|^2\Bigr) + \max_{0\leqslant k<n} \|x_k\|^2,
+        \|x_n\|^2 &\leqslant c_n \left(a-a_1 \|x_n\|^2 + a_2 \|\overline x_n\|^2\right) + \max_{0\leqslant k<n} \|x_k\|^2
+        \\ &\leqslant c_n \Bigl(a-a_1 \|x_n\|^2 + a_2 \max_{0\leqslant k\leqslant n} \|x_k\|^2\Bigr) + \max_{0\leqslant k<n} \|x_k\|^2,
     \end{align*}
-    其中$a_n:=2\left(t_n-t_{n-1}\right)^\alpha \Gamma(2-\alpha)$. 现在易证
+    其中$c_n:=2\left(t_n-t_{n-1}\right)^\alpha \Gamma(2-\alpha)$. 现在易证
     \begin{equation*}
-        \|x_n\|^2\leqslant \max\bigl((a_u-a_v)^{-1}a,\max_{0\leqslant k<n}\|x_k\|^2\bigr),\,n\in\positiveinteger,
+        \|x_n\|^2\leqslant \max\bigl((a_1-a_2)^{-1}a,\max_{0\leqslant k<n}\|x_k\|^2\bigr),\,n\in\positiveinteger,
     \end{equation*}
     最后归纳即得结论。
 \end{frame}
@@ -329,12 +329,12 @@
 \begin{frame}{数值解的稳定性}
     把\mainEquation 的初值条件改为$x(0)=y_0$, 用同样的数值算法（包括步长）产生数值解$\left(y_n\right)_{n=0}^\infty$和对“延迟”的近似$\left(\overline y_n\right)_{n=0}^\infty$, 并记$e_n:=y_n-x_n, \overline e_n:=\overline y_n-\overline x_n$.
     \begin{theorem}\label{stability}
-        如果存在常数$b_u>b_v>0$, 使得对任何$t\geqslant 0$和$u,v,x,y\in \realset^d$成立
+        如果存在常数$b_1>b_2>0$, 使得对任何$t\geqslant 0$和$u,v,x,y\in \realset^d$成立
         \begin{equation*}
             \left\{
                 \begin{aligned}
-                    &\left<f(t,u,v)-f(t,x,v),u-x\right>\leqslant -b_u \|u-x\|^2,
-                    \\ &\|f(t,u,v)-f(t,u,y)\|\leqslant b_v \|v-y\|,
+                    &\left<f(t,u,v)-f(t,x,v),u-x\right>\leqslant -b_1 \|u-x\|^2,
+                    \\ &\|f(t,u,v)-f(t,u,y)\|\leqslant b_2 \|v-y\|,
                 \end{aligned}
             \right.
         \end{equation*}
@@ -351,9 +351,9 @@
     \end{equation*}
     两边同$e_n$取内积并放缩得到
     \begin{equation*}
-        \|e_n\|^2\leqslant \max_{0\leqslant k<n} \|e_k\|^2+a_n\Bigl(-b_u \|e_n\|^2+b_v \max_{0\leqslant k\leqslant n} \|e_k\|^2\Bigr).
+        \|e_n\|^2\leqslant \max_{0\leqslant k<n} \|e_k\|^2+c_n\Bigl(-b_1 \|e_n\|^2+b_2 \max_{0\leqslant k\leqslant n} \|e_k\|^2\Bigr).
     \end{equation*}
-    其中$a_n:=2\left(t_n-t_{n-1}\right)^\alpha\Gamma(2-\alpha)$. 由此容易得到
+    其中$c_n:=2\left(t_n-t_{n-1}\right)^\alpha\Gamma(2-\alpha)$. 由此容易得到
     \begin{equation*}
         \|e_n\|\leqslant\max_{0\leqslant k< n} \|e_k\|,\,n\in\positiveinteger.
     \end{equation*}

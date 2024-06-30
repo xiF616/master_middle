@@ -194,7 +194,7 @@
     \cref{L1格式}两边与$x_n$作内积并结合Cauchy-Schwarz不等式得到
     \begin{equation}\label{耗散性-内积放缩}
         \begin{aligned}
-            \|x_n\|^2&\leqslant \left(t_n-t_{n-1}\right)^\alpha \Bigl( \Gamma(2-\alpha) \left(a-a_u \|x_n\|^2 + a_v \|\overline x_n\|^2\right)
+            \|x_n\|^2&\leqslant \left(t_n-t_{n-1}\right)^\alpha \Bigl( \Gamma(2-\alpha) \left(a-a_1 \|x_n\|^2 + a_2 \|\overline x_n\|^2\right)
             \\ &\relphantom{\leqslant} + \sum_{k=0}^{n-1} \left(a_{n,k+1}-a_{n,k}\right) \frac{\|x_k\|^2+\|x_n\|^2}{2}\Bigr).
         \end{aligned}
     \end{equation}
@@ -204,13 +204,13 @@
     \end{equation}
     将\cref{耗散性-求和}代入\cref{耗散性-内积放缩}得到
     \begin{align*}
-        \|x_n\|^2 &\leqslant a_n \left(a-a_u \|x_n\|^2 + a_v \|\overline x_n\|^2\right) + \max_{0\leqslant k<n} \|x_k\|^2
-        \\ &\leqslant a_n \Bigl(a-a_u \|x_n\|^2 + a_v \max_{0\leqslant k\leqslant n} \|x_k\|^2\Bigr) + \max_{0\leqslant k<n} \|x_k\|^2,
+        \|x_n\|^2 &\leqslant c_n \left(a-a_1 \|x_n\|^2 + a_2 \|\overline x_n\|^2\right) + \max_{0\leqslant k<n} \|x_k\|^2
+        \\ &\leqslant c_n \Bigl(a-a_1 \|x_n\|^2 + a_2 \max_{0\leqslant k\leqslant n} \|x_k\|^2\Bigr) + \max_{0\leqslant k<n} \|x_k\|^2,
     \end{align*}
-    其中$a_n:=2\left(t_n-t_{n-1}\right)^\alpha \Gamma(2-\alpha)$. 如果$\|x_n\|=\max_{0\leqslant k\leqslant n}\|x_k\|$, 那么$\|x_n\|^2 \leqslant a_n \left(a-a_u \|x_n\|^2 + a_v \|x_n\|^2\right) + \|x_n\|^2$, 此时$\|x_n\|^2 \leqslant (a_u-a_v)^{-1}a$; 否则$\|x_n\|<\max_{0\leqslant k<n}\|x_k\|$.
+    其中$c_n:=2\left(t_n-t_{n-1}\right)^\alpha \Gamma(2-\alpha)$. 如果$\|x_n\|=\max_{0\leqslant k\leqslant n}\|x_k\|$, 那么$\|x_n\|^2 \leqslant c_n \left(a-a_1 \|x_n\|^2 + a_2 \|x_n\|^2\right) + \|x_n\|^2$, 此时$\|x_n\|^2 \leqslant (a_1-a_2)^{-1}a$; 否则$\|x_n\|<\max_{0\leqslant k<n}\|x_k\|$.
     因此，无论如何总有
     \begin{equation*}
-        \|x_n\|^2\leqslant \max\bigl\{(a_u-a_v)^{-1}a,\max_{0\leqslant k<n}\|x_k\|^2\bigr\},\,n\in\positiveinteger.
+        \|x_n\|^2\leqslant \max\bigl\{(a_1-a_2)^{-1}a,\max_{0\leqslant k<n}\|x_k\|^2\bigr\},\,n\in\positiveinteger.
     \end{equation*}
     最后只需归纳即可得到想要的结论。
 \end{proof}
@@ -225,13 +225,13 @@
         \|e_n\|^2&\leqslant\left(t_n-t_{n-1}\right)^\alpha\Bigl(\sum_{k=0}^{n-1}\left(a_{n,k+1}-a_{n,k}\right)\frac{\|e_k\|^2+\|e_n\|^2}{2}+\Gamma(2-\alpha)
         \\& \relphantom{=}\left(\left<f\left(t_n,y_n,\overline y_n\right)-f\left(t_n,x_n,\overline y_n\right),e_n\right>+\left\|f\left(t_n,x_n,\overline y_n\right)-f\left(t_n,x_n,\overline x_n\right)\right\|\left\|e_n\right\|\right)\Bigr)
         \\&\leqslant 2^{-1}\Bigl(\max_{0\leqslant k<n} \|e_k\|^2 + \|e_n\|^2\Bigr)
-        +2^{-1}a_n\left(-b_u \|e_n\|^2+b_v \|\overline e_n\|^2\right),
+        +2^{-1}c_n\left(-b_1 \|e_n\|^2+b_2 \|\overline e_n\|^2\right),
     \end{align*}
-    其中$a_n:=2\left(t_n-t_{n-1}\right)^\alpha\Gamma(2-\alpha)$. 注意到$\|\overline e_n\|\leqslant \max_{0\leqslant k\leqslant n} \|e_k\|$, 我们有
+    其中$c_n:=2\left(t_n-t_{n-1}\right)^\alpha\Gamma(2-\alpha)$. 注意到$\|\overline e_n\|\leqslant \max_{0\leqslant k\leqslant n} \|e_k\|$, 我们有
     \begin{equation*}
-        \|e_n\|^2\leqslant \max_{0\leqslant k<n} \|e_k\|^2+a_n\Bigl(-b_u \|e_n\|^2+b_v \max_{0\leqslant k\leqslant n} \|e_k\|^2\Bigr).
+        \|e_n\|^2\leqslant \max_{0\leqslant k<n} \|e_k\|^2+c_n\Bigl(-b_1 \|e_n\|^2+b_2 \max_{0\leqslant k\leqslant n} \|e_k\|^2\Bigr).
     \end{equation*}
-    一种情况是$\|e_n\|=\max_{0\leqslant k\leqslant n} \|e_k\|$, 此时$\max_{0\leqslant k<n} \|e_k\|^2 \geqslant \|e_n\|^2 (1+ a_n(b_u-b_v))\geqslant \|e_n\|^2=\max_{0\leqslant k\leqslant n} \|e_k\|^2\geqslant \max_{0\leqslant k<n} \|e_k\|^2$, 这个不等式链的最左端和最右端一样，因此其中的不等号全取等，特别地有$\|e_n\|=\max_{0\leqslant k<n} \|e_k\|$. 而另一种情况是$\|e_n\|<\max_{0\leqslant k\leqslant n} \|e_k\|$, 此时显然有$\|e_n\|<\max_{0\leqslant k< n} \|e_k\|$. 总之，
+    一种情况是$\|e_n\|=\max_{0\leqslant k\leqslant n} \|e_k\|$, 此时$\max_{0\leqslant k<n} \|e_k\|^2 \geqslant \|e_n\|^2 (1+ c_n(b_1-b_2))\geqslant \|e_n\|^2=\max_{0\leqslant k\leqslant n} \|e_k\|^2\geqslant \max_{0\leqslant k<n} \|e_k\|^2$, 这个不等式链的最左端和最右端一样，因此其中的不等号全取等，特别地有$\|e_n\|=\max_{0\leqslant k<n} \|e_k\|$. 而另一种情况是$\|e_n\|<\max_{0\leqslant k\leqslant n} \|e_k\|$, 此时显然有$\|e_n\|<\max_{0\leqslant k< n} \|e_k\|$. 总之，
     \begin{equation*}
         \|e_n\|\leqslant\max_{0\leqslant k< n} \|e_k\|,\,n\in\positiveinteger.
     \end{equation*}
